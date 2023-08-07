@@ -1,0 +1,69 @@
+:root {
+   --brandFont: "Red Hat Display";
+   --brandColor: "#044ed7";
+}
+
+body {
+   font-family: var(--brandFont);
+}
+
+
+@media (min-width: 576px) {
+   .navbar-expand-sm .navbar-nav, .navbar:not(.navbar-expand):not(.navbar-expand-sm):not(.navbar-expand-md):not(.navbar-expand-lg):not(.navbar-expand-xl) .navbar-nav {
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: end !important;
+   }
+}
+
+.left-margin {
+   margin-left: 44px;
+   margin-top: 20px;
+}
+
+@media (min-width: 576px) {
+.navbar-expand-sm, .navbar:not(.navbar-expand):not(.navbar-expand-sm):not(.navbar-expand-md):not(.navbar-expand-lg):not(.navbar-expand-xl) {
+    box-shadow: 2px 2px 10px lightgray;
+   }
+}
+
+.navbar-nav .show>.nav-link, .navbar-nav .in>.nav-link, .navbar-nav .nav-tabs>li.show>a, .navbar-nav .nav-tabs>li.in>a, .navbar-nav .nav-pills>li.show>a, .navbar-nav .nav-pills>li.in>a, ul.nav.navbar-nav>li.show>a, ul.nav.navbar-nav>li.in>a, .navbar-nav .active>.nav-link, .navbar-nav .nav-tabs>li.active>a, .navbar-nav .nav-pills>li.active>a, ul.nav.navbar-nav>li.active>a, .navbar-nav .nav-link.active, .navbar-nav .nav-tabs>li>a.active, .navbar-nav .nav-pills>li>a.active, ul.nav.navbar-nav>li>a.active {
+    color: var(--bs-navbar-active-color);
+    border-bottom-width: 2px;
+    border-bottom-color: var(--bs-navbar-active-color);
+    border-bottom-style: solid;
+}
+
+
+.custom-flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 17px;
+  align-items: stretch;
+  height: max-content;
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.selectize-control {
+    padding: 0;
+    height: 100%;
+}
+
+
+.selectize-input.items.not-full.has-options.has-items {
+    height: 100%;
+}
+
+.form-group.shiny-input-container > div {
+    height: 100%;
+}
+
+button#print {
+    height: max-content;
+    margin-top: 32px;
+}
