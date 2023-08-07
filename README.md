@@ -1,4 +1,4 @@
-# Version 1
+# Version 1: One Mega App
 
 Files:
 - app.R
@@ -15,4 +15,4 @@ Dependencies:
 - `ggplot2` for plotting
 - `haven` for grabbing data from URL
 
-
+# Version 2: Now You're a Package
