@@ -16,16 +16,16 @@ Dependencies:
 
 # Version 2 - Now We're a Package
 
-Files:
-app.R
-DESCRIPTION
-inst
-man
-NAMESPACE
-R
--- make_plot.R
--- make_table.R
--- read_data.R
--- write_inputs.R
-README.md
-www
+## Files:
+* app.R
+* DESCRIPTION
+* inst
+* man
+* NAMESPACE
+* R
+   * make_plot.R
+   * make_table.R
+   * read_data.R
+   * write_inputs.R
+* README.md
+* www
