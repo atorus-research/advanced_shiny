@@ -1,6 +1,7 @@
 library(shiny)
 library(reactlog)
 
+
 # tell shiny to log all reactivity
 reactlog_enable()
 

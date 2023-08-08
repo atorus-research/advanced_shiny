@@ -1,11 +1,8 @@
 library(shiny)
 library(bslib)
-source('read_data.R')
-source('make_plot.R')
-source('make_table.R')
-source('write_inputs.R')
 
-ui <- tagList(
+
+ui <- shiny::tagList(
    bslib::page_navbar(
       title = "Laboratory Value Explorer",
       theme = bslib::bs_theme(
@@ -15,20 +12,20 @@ ui <- tagList(
          heading_font = font_google("Red Hat Display")
       ),
       sidebar = NULL,
-      nav_panel("Plot",
-                tags$div(class="left-margin",
-                   tags$div(
+      bslib::nav_panel("Plot",
+            shiny::tags$div(class="left-margin",
+                  shiny::tags$div(
                       class="custom-flexbox",
-                      selectInput("trta", "Treatments", NULL, multiple = TRUE),
-                      selectInput("param", "Parameters", NULL, multiple = TRUE, width = '900px'),
-                      actionButton("print", "Print Plot")
+                      shiny::selectInput("trta", "Treatments", NULL, multiple = TRUE),
+                      shiny::selectInput("param", "Parameters", NULL, multiple = TRUE, width = '900px'),
+                      shiny::actionButton("print", "Print Plot")
                    ),
-                   h1("Plot of Labs"),
-                   uiOutput('subtitle')
+                   shiny::h1("Plot of Labs"),
+                   shiny::uiOutput('subtitle')
                 ),
-                plotOutput("plot")
+                shiny::plotOutput("plot")
       ),
-      nav_panel("Table", NULL)
+      bslib::nav_panel("Table", NULL)
    ),
    shiny::includeCSS("www/styles.css")
 )
@@ -36,38 +33,38 @@ ui <- tagList(
 server <- function(input, output, session) {
 
    # a reactive value monitors input dependencies
-   data <- reactive(read_data())
+   data <- shiny::reactive(read_data())
 
    # reactiveValues
-   all_inputs <- reactiveValues(trta = NULL, param = NULL)
+   all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)
 
    ################### PLOT #####################
 
    # observeEvent can be refactored using bindEvent
    # to an observe + bindEvent()
-   observe({
+   shiny::observe({
 
       # this is a little contrived but pretend we need this value
       # and all inputs have a listener attached
       input$print
 
-      updateSelectInput(
+      shiny::updateSelectInput(
          session,
          "trta",
          choices = unique(data()$adlb$TRTA),
          selected = unique(data()$adlb$TRTA)
       )
-      updateSelectInput(
+      shiny::updateSelectInput(
          session,
          "param",
          choices = unique(data()$adlb$PARAM),
          selected = unique(data()$adlb$PARAM)
       )
    }) %>%
-      bindEvent(data())
+      shiny::bindEvent(data())
 
-   output$subtitle <- renderUI({
-      tags$div(
+   output$subtitle <- shiny::renderUI({
+      shiny::tags$div(
          class="subtitle",
          paste0(
             "Averaged measurements of selected parameters by treatments: ",
@@ -77,15 +74,15 @@ server <- function(input, output, session) {
       )
    })
 
-   output$plot <- renderPlot({
+   output$plot <- shiny::renderPlot({
       make_plot(data()$adlb, input$trta, input$param)
    })
 
    ############### TABLE ##########################
 
    # this can be refactored using bindEvent
-   manipulated_data <- reactive(make_table(data()$adlb)) %>%
-      bindEvent(data())
+   manipulated_data <- shiny::reactive(make_table(data()$adlb)) %>%
+      shiny::bindEvent(data())
 
    # we'll use this table
    # in our table tab next session!
@@ -100,10 +97,10 @@ server <- function(input, output, session) {
    #
    # we'll eventually use this object
    # to store selections in a database!
-   onStop(function(){
+   shiny::onStop(function(){
       write_inputs(all_inputs)
    })
 
 }
 
-shinyApp(ui, server)
+shiny::shinyApp(ui = ui, server = server)
