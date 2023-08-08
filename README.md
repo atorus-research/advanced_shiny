@@ -17,37 +17,37 @@ Dependencies:
 # Version 2 - Now We're a Package
 
 ### Files:
-app.R
-DESCRIPTION
-inst
-man
-NAMESPACE
-R
--- make_plot.R
--- make_table.R
--- read_data.R
--- write_inputs.R
-README.md
-www
+* app.R
+* DESCRIPTION
+* inst
+* man
+* NAMESPACE
+* R
+  * make_plot.R
+  * make_table.R
+  * read_data.R
+  * write_inputs.R
+* README.md
+* www
 
 # Version 3 - Modules
 
 ### Files: 
 
-app.R
-DESCRIPTION
-inst
-man
-NAMESPACE
-R
--- bdasap_app.R
--- mod-controls.R
--- mod-plot.R
--- mod-table.R
--- mod-make_plot.R
--- util-make_plot.R
--- util--make_table.R
--- util-read_data.R
--- util-write_inputs.R
-README.md
-www
+* app.R
+* DESCRIPTION
+* inst
+* man
+* NAMESPACE
+* R
+  * bdasap_app.R
+  * mod-controls.R
+  * mod-plot.R
+  * mod-table.R
+  * mod-make_plot.R
+  * util-make_plot.R
+  * util--make_table.R
+  * util-read_data.R
+  * util-write_inputs.R
+* README.md
+* www
