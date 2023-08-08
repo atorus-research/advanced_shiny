@@ -1,3 +1,11 @@
+#' Controls UI module
+#' 
+#' two multiselect controls
+#' one for treatment and the other for parameters
+#'
+#' @param id unique identifier of the module
+#'
+#' @export
 controlsUI <- function(id) {
   ns <- NS(id)
   tags$div(
@@ -7,6 +15,13 @@ controlsUI <- function(id) {
   )
 }
 
+#' control server
+#'
+#' @param id unique identifier to match the controls UI
+#' @param data data to use for populating the choices 
+#' and selections of the pickers
+#'
+#' @export
 controlsServer <- function(id, data) {
   moduleServer(
     id,

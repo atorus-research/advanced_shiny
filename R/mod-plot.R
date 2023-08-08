@@ -1,3 +1,9 @@
+#' Plot Module UI
+#'
+#' @param id unique namespace of the plotting module
+#'
+#' @return a plot module with a title, subtitle, and plot
+#' @export
 plotUI <- function(id) {
   ns <- NS(id)
   nav_panel("Plot",
@@ -14,6 +20,14 @@ plotUI <- function(id) {
   )
 }
 
+#' Plot module server
+#' 
+#' controls subset the plot and change the subtitle of the module
+#'
+#' @param id matching unique namespace ID of the UI module
+#' @param data data used for plotting and controls
+#' 
+#' @export
 plotServer <- function(id, data) {
   moduleServer(
     id,
