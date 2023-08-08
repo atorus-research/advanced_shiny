@@ -1,4 +1,4 @@
-# Version 1
+# Version 1 
 
 Files:
 - app.R
@@ -14,4 +14,18 @@ Dependencies:
 - `ggplot2` for plotting
 - `haven` for grabbing data from URL
 
+# Version 2 - Now We're a Package
 
+Files:
+app.R
+DESCRIPTION
+inst
+man
+NAMESPACE
+R
+-- make_plot.R
+-- make_table.R
+-- read_data.R
+-- write_inputs.R
+README.md
+www
