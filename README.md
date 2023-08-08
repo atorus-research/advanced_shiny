@@ -14,5 +14,3 @@ Dependencies:
 - `dplyr` for data manipulation
 - `ggplot2` for plotting
 - `haven` for grabbing data from URL
-
-# Version 2: Now You're a Package
