@@ -1,5 +1,13 @@
-library(haven)
-
+#' Read Data
+#' 
+#' Function to read in data needed for application
+#' 
+#' @importFrom haven read_xpt
+#'
+#' @return a list of data.frames for use in the application
+#' @export
+#'
+#' @examples read_data()
 read_data <- function() {
    return(
       list(
