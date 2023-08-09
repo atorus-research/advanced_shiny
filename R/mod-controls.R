@@ -30,6 +30,7 @@ controlsServer <- function(id, data) {
        ns <- session$ns
 
        observeEvent(data(), {
+          logger::log_info(sprintf("[%s] controls triggered", id))
           updateSelectInput(
              session,
              "trta",

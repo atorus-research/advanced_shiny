@@ -29,15 +29,10 @@ bdasap_app <- function(runApp = TRUE){
       server = function(input, output, session){
          
          data <- reactive(read_data())
+         logger::log_info("data object created")
          
          # reactiveValues
          all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)
-         
-         ############### TABLE ##########################
-         
-         # this can be refactored using bindEvent
-         manipulated_data <- shiny::reactive(make_table(data()$adlb)) %>%
-            shiny::bindEvent(data())
          
          # reactives get passed to modules as functions!
          # we _call_ the reactive INSIDE the module

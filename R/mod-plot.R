@@ -32,10 +32,13 @@ plotServer <- function(id, data) {
   moduleServer(
     id,
     function(input, output, session) {
+       
+       ns <- session$ns
 
        controls <- controlsServer("controls", data)
 
        output$subtitle <- renderUI({
+          logger::log_info(sprintf("[%s] plot subtitle triggered", id))
           tags$div(
              class="subtitle",
              paste0(
@@ -47,6 +50,7 @@ plotServer <- function(id, data) {
        })
 
        output$plot <- renderPlot({
+          logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
           make_plot(data()$adlb, controls$trta(), controls$param())
        })
 
