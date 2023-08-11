@@ -11,18 +11,18 @@
 #'
 #' @return a ggplot2 object to be used inside the app
 #' @export
-make_table <- function(data, trta, paramcd) {
+make_table <- function(data, trta, param) {
    
    if (!is.null(data) & !is.null(trta) & !is.null(param)) {
       data <- data |>
-         filter(TRTA %in% trta) |>
-         filter(PARAM %in% param) |>
-         group_by(TRTA, PARAM, AVISITN) |>
-         summarise(AVAL = mean(AVAL), .groups = 'keep')
+         filter(.data$TRTA %in% trta) |>
+         filter(.data$PARAM %in% param) |>
+         group_by(.data$TRTA, .data$PARAM, .data$AVISITN) |>
+         summarise(AVAL = mean(.data$AVAL), .groups = 'keep')
       
-      tplyr_table(data$adlb, TRTA) |>
+      tplyr_table(data$adlb, .data$TRTA) |>
          add_layer(
-            group_count(PARAMCD)
+            group_count(.data$PARAMCD)
          ) |>
          build()
    }

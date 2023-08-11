@@ -17,12 +17,12 @@ make_plot <- function(data, trta, param) {
 
       if (!is.null(data) & !is.null(trta) & !is.null(param)) {
          data <- data |>
-            filter(TRTA %in% trta) |>
-            filter(PARAM %in% param) |>
-            group_by(TRTA, PARAM, AVISITN) |>
-            summarise(AVAL = mean(AVAL), .groups = 'keep')
+            filter(.data$TRTA %in% trta) |>
+            filter(.data$PARAM %in% param) |>
+            group_by(.data$TRTA, .data$PARAM, .data$AVISITN) |>
+            summarise(AVAL = mean(.data$AVAL), .groups = 'keep')
 
-         plot <- ggplot(data, aes(x = AVISITN, y = AVAL, group = TRTA, color = TRTA)) +
+         plot <- ggplot(data, aes(x = .data$AVISITN, y = .data$AVAL, group = .data$TRTA, color = .data$TRTA)) +
             geom_point() +
             geom_line() +
             facet_wrap(.~PARAM, scales = "free_y")

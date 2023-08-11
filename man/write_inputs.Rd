@@ -13,5 +13,6 @@ write_inputs(lst)
 Function to write the user session info
 }
 \examples{
+all_inputs <- utils::sessionInfo()
 write_inputs(all_inputs)
 }
