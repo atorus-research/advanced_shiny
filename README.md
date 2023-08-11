@@ -108,3 +108,4 @@ fs::dir_tree()
 5. Pushed code to test.
   - After GitHub Action didn't run, commented out the line `# branches: [main, rc-**]` so the action will run on any push.
   - After the above didn't work, changed to `on: push`.
+  - After the above didn't work, ran `usethis::use_github_action()` and chose the `check-standard` option. Then realized that step 2 should have included making a `.github/workflows/R-CMD-check.yaml` path. I was missing the `workflows` folder.
