@@ -28,15 +28,22 @@ bdasap_app <- function(runApp = TRUE){
       ),
       server = function(input, output, session){
          
-         data <- reactive(read_data())
+         # reactiveValues
+         all_inputs <- shiny::reactiveValues(
+            trta = NULL, 
+            param = NULL,
+            data = NULL
+         )
+         
+         browser()
+         all_inputs$data <- read_data()
+         
          logger::log_info("data object created")
          
-         # reactiveValues
-         all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)
          
          # reactives get passed to modules as functions!
          # we _call_ the reactive INSIDE the module
-         plotServer("plot", data)
+         plotServer("plot", reactive(all_inputs$data))
          tableServer("table")
          
          ################ Exercise ##################

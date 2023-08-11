@@ -49,10 +49,16 @@ plotServer <- function(id, data) {
           )
        })
 
-       output$plot <- renderPlot({
+       observe({
+          output$plot <- renderPlot({
           logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
           make_plot(data()$adlb, controls$trta(), controls$param())
        })
+      }) %>% bindEvent(
+           data(),
+           ignoreNULL = TRUE,
+           ignoreInit = TRUE
+         )
 
     }
   )

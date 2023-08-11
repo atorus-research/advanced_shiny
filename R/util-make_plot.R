@@ -8,7 +8,6 @@
 #' @param trta treatments to average for each line over time
 #' @param param parameters to facet the plot by
 #' 
-#' @import ggplot2
 #' @importFrom dplyr filter group_by summarise
 #'
 #' @return a ggplot2 object to be used inside the app
