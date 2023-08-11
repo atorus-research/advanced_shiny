@@ -2,13 +2,7 @@
 #
 # NOTE: This Shiny team GHA workflow is overkill for most R packages.
 # For most R packages it is better to use https://github.com/r-lib/actions
-on:
-  push:
-   # branches: [main, rc-**]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 8 * * 1' # every monday
+on: push
 
 name: Package checks
 

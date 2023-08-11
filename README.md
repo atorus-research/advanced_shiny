@@ -103,3 +103,4 @@ fs::dir_tree()
 4. Copy/pasted code from [here](https://github.com/rstudio/shiny-workflows#usage)
 5. Pushed code to test.
   - After GitHub Action didn't run, commented out the line `# branches: [main, rc-**]` so the action will run on any push.
+  - After the above didn't work, changed to `on: push`.
