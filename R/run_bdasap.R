@@ -9,17 +9,19 @@
 #' @importFrom sass font_google
 #'
 run_bdasap <- function() {
+   # include the path for the images in isnt/ folder
+   shiny::addResourcePath('img', system.file('img', package = 'bdasap'))
+   
    ui <- shiny::tagList(
    bslib::page_navbar(
-      header =       
-         # include image
-        shiny::img(
-          src = system.file("www/styles.css", package = "bdasap"),
-          height = 100,
-          width = 100,
-          style = "margin:10px 10px"
-        ), # end img
-      title = "Laboratory Value Explorer",
+   title = tags$div(
+            shiny::img(
+            src = "img/logo-shiny.png",
+            height = 100,
+            width = 100,
+            style = "margin:10px 10px"
+         ), # end img
+         "Laboratory Value Explorer"),
       theme = bslib::bs_theme(
          "navbar-bg" = "white",
          "bs-navbar-active-color" = "#044ed7",
@@ -42,7 +44,9 @@ run_bdasap <- function() {
       ),
       bslib::nav_panel("Table", NULL)
    ),
-   shiny::includeCSS(path = system.file("www/styles.css", package = "bdasap"))
+      # this needs to be called from the relative path (i.e., system.file())
+   shiny::includeCSS(path = 
+         system.file("www/styles.css", package = "bdasap"))
 )
 
 server <- function(input, output, session) {
