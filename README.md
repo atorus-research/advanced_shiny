@@ -109,3 +109,13 @@ fs::dir_tree()
   - After GitHub Action didn't run, commented out the line `# branches: [main, rc-**]` so the action will run on any push.
   - After the above didn't work, changed to `on: push`.
   - After the above didn't work, ran `usethis::use_github_action()` and chose the `check-standard` option. Then realized that step 2 should have included making a `.github/workflows/R-CMD-check.yaml` path. I was missing the `workflows` folder.
+  
+ The above is the troubleshooting workflow, and here is the better way to implement.
+1. Cleaned up package structure and all flags that were thrown by running `devtools::check()`.
+2. Run `usethis::use_github_action()`.
+3. TODO: evaluate if the checks from [here](https://github.com/rstudio/shiny-workflows#usage) are overkill/suggest a good first CI implementation for testing.
+```
+.github
+└── workflows
+    └── R-CMD-check.yaml
+```
