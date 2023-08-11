@@ -11,6 +11,14 @@
 run_bdasap <- function() {
    ui <- shiny::tagList(
    bslib::page_navbar(
+      header =       
+         # include image
+        shiny::img(
+          src = system.file("www/styles.css", package = "bdasap"),
+          height = 100,
+          width = 100,
+          style = "margin:10px 10px"
+        ), # end img
       title = "Laboratory Value Explorer",
       theme = bslib::bs_theme(
          "navbar-bg" = "white",
@@ -34,7 +42,7 @@ run_bdasap <- function() {
       ),
       bslib::nav_panel("Table", NULL)
    ),
-   shiny::includeCSS("www/styles.css")
+   shiny::includeCSS(path = system.file("www/styles.css", package = "bdasap"))
 )
 
 server <- function(input, output, session) {
