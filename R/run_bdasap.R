@@ -14,14 +14,15 @@ run_bdasap <- function() {
    
    ui <- shiny::tagList(
    bslib::page_navbar(
-   title = tags$div(
-            shiny::img(
+      title = tags$div(
+         shiny::img(
             src = "img/logo-shiny.png",
-            height = 100,
-            width = 100,
+            height = 50,
+            width = 45,
             style = "margin:10px 10px"
-         ), # end img
-         "Laboratory Value Explorer"),
+         ),
+         "BDasap"
+      ),
       theme = bslib::bs_theme(
          "navbar-bg" = "white",
          "bs-navbar-active-color" = "#044ed7",
