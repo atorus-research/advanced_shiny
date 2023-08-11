@@ -24,10 +24,10 @@ make_plot <- function(data, trta, param) {
 
          plot <- ggplot2::ggplot(data, 
                         ggplot2::aes(
-                           x = AVISITN, 
-                           y = AVAL, 
-                           group = TRTA, 
-                           color = TRTA)) +
+                              x = AVISITN, 
+                              y = AVAL, 
+                              group = TRTA, 
+                              color = TRTA)) +
             ggplot2::geom_point() +
             ggplot2::geom_line() +
             ggplot2::facet_wrap(.~PARAM, scales = "free_y")
