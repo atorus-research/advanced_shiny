@@ -60,7 +60,7 @@ server <- function(input, output, session) {
          choices = unique(data()$adlb$PARAM),
          selected = unique(data()$adlb$PARAM)
       )
-   }) %>%
+   }) |> 
       shiny::bindEvent(data())
 
    output$subtitle <- shiny::renderUI({
@@ -81,7 +81,7 @@ server <- function(input, output, session) {
    ############### TABLE ##########################
 
    # this can be refactored using bindEvent
-   manipulated_data <- shiny::reactive(make_table(data()$adlb)) %>%
+   manipulated_data <- shiny::reactive(make_table(data()$adlb)) |> 
       shiny::bindEvent(data())
 
    # we'll use this table
