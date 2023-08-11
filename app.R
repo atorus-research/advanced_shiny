@@ -1,9 +1,16 @@
 library(shiny)
 library(bslib)
 
-
 ui <- shiny::tagList(
    bslib::page_navbar(
+      header =       
+         # include image
+        shiny::img(
+          src = "logo-shiny.png",
+          height = 100,
+          width = 100,
+          style = "margin:10px 10px"
+        ), # end img
       title = "Laboratory Value Explorer",
       theme = bslib::bs_theme(
          "navbar-bg" = "white",
@@ -13,9 +20,9 @@ ui <- shiny::tagList(
       ),
       sidebar = NULL,
       bslib::nav_panel("Plot",
-            shiny::tags$div(class="left-margin",
+            shiny::tags$div(class = "left-margin",
                   shiny::tags$div(
-                      class="custom-flexbox",
+                      class = "custom-flexbox",
                       shiny::selectInput("trta", "Treatments", NULL, multiple = TRUE),
                       shiny::selectInput("param", "Parameters", NULL, multiple = TRUE, width = '900px'),
                       shiny::actionButton("print", "Print Plot")
@@ -60,12 +67,12 @@ server <- function(input, output, session) {
          choices = unique(data()$adlb$PARAM),
          selected = unique(data()$adlb$PARAM)
       )
-   }) %>%
+   }) |>
       shiny::bindEvent(data())
 
    output$subtitle <- shiny::renderUI({
       shiny::tags$div(
-         class="subtitle",
+         class = "subtitle",
          paste0(
             "Averaged measurements of selected parameters by treatments: ",
             paste(input$trta, collapse = ", "),
@@ -81,7 +88,7 @@ server <- function(input, output, session) {
    ############### TABLE ##########################
 
    # this can be refactored using bindEvent
-   manipulated_data <- shiny::reactive(make_table(data()$adlb)) %>%
+   manipulated_data <- shiny::reactive(make_table(data()$adlb)) |>
       shiny::bindEvent(data())
 
    # we'll use this table

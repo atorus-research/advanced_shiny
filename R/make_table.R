@@ -15,16 +15,16 @@ make_table <- function(data, trta, paramcd) {
    
    if (!is.null(data) & !is.null(trta) & !is.null(param)) {
       data <- data |>
-         filter(TRTA %in% trta) |>
-         filter(PARAM %in% param) |>
-         group_by(TRTA, PARAM, AVISITN) |>
-         summarise(AVAL = mean(AVAL), .groups = 'keep')
+         dplyr::filter(TRTA %in% trta) |>
+         dplyr::filter(PARAM %in% param) |>
+         dplyr::group_by(TRTA, PARAM, AVISITN) |>
+         dplyr::summarise(AVAL = mean(AVAL), .groups = 'keep')
       
-      tplyr_table(data$adlb, TRTA) |>
-         add_layer(
-            group_count(PARAMCD)
+      Tplyr::tplyr_table(data$adlb, TRTA) |>
+         Tplyr::add_layer(
+            Tplyr::group_count(PARAMCD)
          ) |>
-         build()
+         Tplyr::build()
    }
 
 }
