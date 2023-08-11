@@ -13,9 +13,9 @@ ui <- shiny::tagList(
       ),
       sidebar = NULL,
       bslib::nav_panel("Plot",
-            shiny::tags$div(class="left-margin",
+            shiny::tags$div(class = "left-margin",
                   shiny::tags$div(
-                      class="custom-flexbox",
+                      class = "custom-flexbox",
                       shiny::selectInput("trta", "Treatments", NULL, multiple = TRUE),
                       shiny::selectInput("param", "Parameters", NULL, multiple = TRUE, width = '900px'),
                       shiny::actionButton("print", "Print Plot")
@@ -65,7 +65,7 @@ server <- function(input, output, session) {
 
    output$subtitle <- shiny::renderUI({
       shiny::tags$div(
-         class="subtitle",
+         class = "subtitle",
          paste0(
             "Averaged measurements of selected parameters by treatments: ",
             paste(input$trta, collapse = ", "),

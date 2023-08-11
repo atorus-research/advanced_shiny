@@ -17,10 +17,10 @@ make_plot <- function(data, trta, param) {
 
       if (!is.null(data) & !is.null(trta) & !is.null(param)) {
          data <- data |>
-            filter(TRTA %in% trta) |>
-            filter(PARAM %in% param) |>
-            group_by(TRTA, PARAM, AVISITN) |>
-            summarise(AVAL = mean(AVAL), .groups = 'keep')
+            dplyr::filter(TRTA %in% trta) |>
+            dplyr::filter(PARAM %in% param) |>
+            dplyr::group_by(TRTA, PARAM, AVISITN) |>
+            dplyr::summarise(AVAL = mean(AVAL), .groups = 'keep')
 
          plot <- ggplot2::ggplot(data, 
                         ggplot2::aes(
