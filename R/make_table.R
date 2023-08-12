@@ -9,22 +9,20 @@
 #' @importFrom dplyr filter group_by summarise
 #' @importFrom Tplyr tplyr_table add_layer group_count build
 #'
-#' @return a ggplot2 object to be used inside the app
+#' @return a data.frame summary to be used in the app
 #' @export
-make_table <- function(data, trta, paramcd) {
+make_table <- function(data, trta, param) {
    
    if (!is.null(data) & !is.null(trta) & !is.null(param)) {
       data <- data |>
-         dplyr::filter(TRTA %in% trta) |>
-         dplyr::filter(PARAM %in% param) |>
-         dplyr::group_by(TRTA, PARAM, AVISITN) |>
-         dplyr::summarise(AVAL = mean(AVAL), .groups = 'keep')
+         filter(TRTA %in% trta) |>
+         filter(PARAM %in% param)
       
-      Tplyr::tplyr_table(data$adlb, TRTA) |>
-         Tplyr::add_layer(
-            Tplyr::group_count(PARAMCD)
+      tplyr_table(data, TRTA) |>
+         add_layer(
+            group_count(AVISIT, PARAM)
          ) |>
-         Tplyr::build()
+         build()
    }
-
+   
 }
