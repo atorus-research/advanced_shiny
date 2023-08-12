@@ -9,6 +9,9 @@
 #' @importFrom sass font_google
 #'
 run_bdasap <- function() {
+   # include the path for the images in isnt/ folder
+   shiny::addResourcePath('img', system.file('img', package = 'bdasap'))
+   
    ui <- shiny::tagList(
    bslib::page_navbar(
       title = tags$div(
@@ -18,7 +21,7 @@ run_bdasap <- function() {
             width = 45,
             style = "margin:10px 10px"
          ),
-         "bdasap"
+         "BDasap"
       ),
       theme = bslib::bs_theme(
          "navbar-bg" = "white",
@@ -42,7 +45,9 @@ run_bdasap <- function() {
       ),
       bslib::nav_panel("Table", NULL)
    ),
-   shiny::includeCSS(path = system.file("www/styles.css", package = "bdasap"))
+      # this needs to be called from the relative path (i.e., system.file())
+   shiny::includeCSS(path = 
+         system.file("www/styles.css", package = "bdasap"))
 )
 
 server <- function(input, output, session) {
