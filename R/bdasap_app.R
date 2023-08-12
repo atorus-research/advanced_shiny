@@ -12,7 +12,15 @@ bdasap_app <- function(runApp = TRUE){
    app <- shiny::shinyApp(
       ui = tagList(
          page_navbar(
-            title = "Laboratory Value Explorer",
+            title = tags$div(
+               shiny::img(
+                  src = "logo-shiny.png",
+                  height = 50,
+                  width = 45,
+                  style = "margin:10px 10px"
+               ),
+               "bdasap"
+            ),
             theme = bs_theme(
                "navbar-bg" = "white",
                "bs-navbar-active-color" = "#044ed7",
