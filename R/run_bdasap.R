@@ -11,15 +11,15 @@
 run_bdasap <- function() {
    ui <- shiny::tagList(
    bslib::page_navbar(
-      header =       
-         # include image
-        shiny::img(
-          src = system.file("www/styles.css", package = "bdasap"),
-          height = 100,
-          width = 100,
-          style = "margin:10px 10px"
-        ), # end img
-      title = "Laboratory Value Explorer",
+      title = tags$div(
+         shiny::img(
+            src = "logo-shiny.png",
+            height = 50,
+            width = 45,
+            style = "margin:10px 10px"
+         ),
+         "bdasap"
+      ),
       theme = bslib::bs_theme(
          "navbar-bg" = "white",
          "bs-navbar-active-color" = "#044ed7",
@@ -112,7 +112,7 @@ server <- function(input, output, session) {
    #
    # we'll eventually use this object
    # to store selections in a database!
-   shiny::onStop(function(){
+   shiny::onStop(function() {
       write_inputs(all_inputs)
    })
 

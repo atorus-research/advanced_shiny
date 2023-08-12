@@ -67,3 +67,9 @@ button#print {
     height: max-content;
     margin-top: 32px;
 }
+
+.navbar-brand {
+   margin-right 0px !important;
+   display: contents;
+   height: 50px;
+}
