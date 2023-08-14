@@ -14,3 +14,11 @@ test_that("make_plot generates a ggplot2 object", {
 })
 
 
+test_that("make_plot generates a ggplot2 of param N facets", {
+   plotObj <- make_plot(data, unique(data$TRTA), unique(data$PARAM))
+   expect_equal(
+      length(plotObj$plot_env$param), 
+      length(unique(data$PARAM))
+   )
+})
+
