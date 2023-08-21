@@ -4,7 +4,7 @@
 \alias{make_table}
 \title{Make Lab Table}
 \usage{
-make_table(data, trta, paramcd)
+make_table(data, trta, param)
 }
 \arguments{
 \item{data}{data.frame to use for the table}
@@ -14,7 +14,7 @@ make_table(data, trta, paramcd)
 \item{param}{parameters to include in the table as rows}
 }
 \value{
-a ggplot2 object to be used inside the app
+a data.frame summary to be used in the app
 }
 \description{
 A table of laboratory values
