@@ -2,7 +2,7 @@
 #'
 #' @return shiny app
 #' 
-#' @export
+#' @export run_bdasap
 #' 
 #' @import shiny
 #' @importFrom bslib page_navbar bs_theme nav_panel
