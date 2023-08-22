@@ -10,13 +10,13 @@
 #'
 run_bdasap <- function() {
    # include the path for the images in isnt/ folder
-   shiny::addResourcePath('img', system.file('img', package = 'bdasap'))
+   shiny::addResourcePath('www', system.file('www', package = 'bdasap'))
    
    ui <- shiny::tagList(
    bslib::page_navbar(
       title = tags$div(
          shiny::img(
-            src = "logo-shiny.png",
+            src = "www/logo-shiny.png",
             height = 50,
             width = 45,
             style = "margin:10px 10px"
