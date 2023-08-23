@@ -41,7 +41,7 @@ run_bdasap <- function() {
                    shiny::h1("Plot of Labs"),
                    shiny::uiOutput('subtitle')
                 ),
-                shiny::plotOutput("plot")
+                plotly::plotlyOutput("plot")
       ),
       bslib::nav_panel("Table", NULL)
    ),
@@ -94,7 +94,7 @@ server <- function(input, output, session) {
       )
    })
 
-   output$plot <- shiny::renderPlot({
+   output$plot <- plotly::renderPlotly({
       make_plot(data()$adlb, input$trta, input$param)
    })
 
