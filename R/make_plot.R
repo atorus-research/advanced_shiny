@@ -10,6 +10,7 @@
 #' 
 #' @importFrom dplyr filter group_by summarise
 #' @importFrom ggplot2 ggplot aes geom_point geom_line facet_wrap
+#' @importFrom plotly ggplotly
 #'
 #' @return a ggplot2 object to be used inside the app
 #' @export
