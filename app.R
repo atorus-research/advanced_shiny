@@ -1,5 +1,6 @@
 library(shiny)
 library(bslib)
+library(plotly)
 source('read_data.R')
 source('make_plot.R')
 source('make_table.R')
@@ -34,7 +35,7 @@ ui <- tagList(
                    h1("Plot of Labs"),
                    uiOutput('subtitle')
                 ),
-                plotOutput("plot")
+                plotlyOutput("plot")
       ),
       nav_panel("Table", NULL)
    ),
@@ -85,7 +86,7 @@ server <- function(input, output, session) {
       )
    })
 
-   output$plot <- renderPlot({
+   output$plot <- renderPlotly({
       make_plot(data()$adlb, input$trta, input$param)
    })
 
