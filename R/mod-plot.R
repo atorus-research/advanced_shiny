@@ -1,6 +1,8 @@
 #' Plot Module UI
 #'
 #' @param id unique namespace of the plotting module
+#' 
+#' @importFrom plotly plotlyOutput renderPlotly
 #'
 #' @return a plot module with a title, subtitle, and plot
 #' @export
@@ -16,7 +18,7 @@ plotUI <- function(id) {
                h1("Plot of Labs"),
                uiOutput(ns('subtitle'))
             ),
-            plotOutput(ns("plot"))
+            plotlyOutput(ns("plot"))
   )
 }
 
@@ -50,14 +52,12 @@ plotServer <- function(id, data) {
        })
 
        observe({
-          output$plot <- renderPlot({
+          output$plot <- renderPlotly({
           logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
           make_plot(data()$adlb, controls$trta(), controls$param())
        })
       }) %>% bindEvent(
-           data(),
-           ignoreNULL = TRUE,
-           ignoreInit = TRUE
+           data()
          )
 
     }

@@ -9,6 +9,8 @@
 #' @param param parameters to facet the plot by
 #' 
 #' @importFrom dplyr filter group_by summarise
+#' @importFrom plotly ggplotly
+#' @import ggplot2
 #'
 #' @return a ggplot2 object to be used inside the app
 #' @export
@@ -26,8 +28,9 @@ make_plot <- function(data, trta, param) {
             geom_line() +
             facet_wrap(.~PARAM, scales = "free_y")
 
-         suppressWarnings(print(plot))
+         ggplotly(plot)
 
       }
+   
 
 }

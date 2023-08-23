@@ -43,7 +43,7 @@ bdasap_app <- function(runApp = TRUE){
             data = NULL
          )
          
-         browser()
+
          all_inputs$data <- read_data()
          
          logger::log_info("data object created")

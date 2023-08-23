@@ -4,7 +4,7 @@
 \alias{make_table}
 \title{Make Lab Table}
 \usage{
-make_table(data, trta, paramcd)
+make_table(data, trta, param)
 }
 \arguments{
 \item{data}{data.frame to use for the table}
