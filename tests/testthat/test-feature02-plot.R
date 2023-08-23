@@ -1,11 +1,14 @@
 app <- here::here("app.R")
-driver_app <- shinytest2::AppDriver$new(app, timeout = 30000)
-plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+driver_app <- shinytest2::AppDriver$new(app, timeout = 100000)
 
 testthat::describe("Feature 02: Plot created using data from ADLB", {
    
+   # we need to wait for the plotly object to exists
+   init_values <- driver_app$get_values()
+   plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+   
    it("a plotly chart is drawn on the page", {
-      expect_true("plotly-main" %in% names(plotly_obj$deps))
+      expect_true("plotly-main" %in% plotly_obj$deps$name)
    })
    
    it("the chart is faceted by parameter", {
@@ -27,10 +30,11 @@ testthat::describe("Feature 02: Plot created using data from ADLB", {
          "Gamma Glutamyl Transferase (U/L)",
          "Glucose (mmol/L)","Phosphate (mmol/L)",            
          "Potassium (mmol/L)","Protein (g/L)",
-         "Sodium (mmol/L)"
+         "Sodium (mmol/L)",
+         "Urate (umol/L)"
       )
       
-      expect_equal(expected, actual)
+      expect_equal(actual, expected)
    })
    
    it("the chart has AVISITN on the x-axis", {
@@ -39,7 +43,7 @@ testthat::describe("Feature 02: Plot created using data from ADLB", {
       
       expected <- "AVISITN"
       
-      expect_equal(expected, actual)
+      expect_equal(actual, expected)
    })
    
    it("the chart has AVAL on the y-axis", {
@@ -48,7 +52,7 @@ testthat::describe("Feature 02: Plot created using data from ADLB", {
       
       expected <- "AVAL"
       
-      expect_equal(expected, actual)
+      expect_equal(actual, expected)
    })
    
    

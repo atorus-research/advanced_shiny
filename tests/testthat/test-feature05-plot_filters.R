@@ -1,8 +1,10 @@
 app <- here::here("app.R")
-driver_app <- shinytest2::AppDriver$new(app, timeout = 10000)
+driver_app <- shinytest2::AppDriver$new(app, timeout = 100000)
 
-testthat::describe("Feature 01: Dashboard connects to data", {
+testthat::describe("Feature 05: Plot interacts with controls module", {
    
+   # we need to wait for the plotly object to exists
+   init_values <- driver_app$get_values()
    plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
    
    it("a plot is drawn with treatments lines of 
@@ -10,11 +12,11 @@ testthat::describe("Feature 01: Dashboard connects to data", {
       with 18 facets", {
       
       facets <- plotly_obj$x$layout$annotations$text[-c(1,2)]
-      expect_equal(length(facets), 18)
+      expect_equal(18, length(facets))
       
       treatments <- unique(plotly_obj$x$data$name)
       expected <- c("Placebo", "Xanomeline High Dose", "Xanomeline Low Dose")
-      expect_equal(expected, treatments)
+      expect_equal(treatments, expected)
    })
    
    it("remove Placebo from the treatment dropdown,
@@ -23,14 +25,12 @@ testthat::describe("Feature 01: Dashboard connects to data", {
       driver_app$set_inputs(
          'plot-controls-trta' = c("Xanomeline High Dose", "Xanomeline Low Dose")
       )
-         
-      driver_app$click("plot-controls-trta")
       
       new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
       treatments <- unique(new_plotly_obj$x$data$name)
       
       expected <- c("Xanomeline High Dose", "Xanomeline Low Dose")
-      expect_equal(expected, treatments)
+      expect_equal(treatments, expected)
       
    })
    
@@ -52,13 +52,13 @@ testthat::describe("Feature 01: Dashboard connects to data", {
                "Creatinine (umol/L)",
                "Gamma Glutamyl Transferase (U/L)",
                "Glucose (mmol/L)","Phosphate (mmol/L)",            
-               "Potassium (mmol/L)","Protein (g/L)"
+               "Potassium (mmol/L)","Protein (g/L)",
+               "Urate (umol/L)"
             )
          )
          
-         driver_app$click("plot-controls-trta")
-      
-      facets <- plotly_obj$x$layout$annotations$text[-c(1,2)]
+      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+      facets <- new_plotly_obj$x$layout$annotations$text[-c(1,2)]
       expect_equal(length(facets), 17)
    })
    
