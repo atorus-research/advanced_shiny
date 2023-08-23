@@ -32,7 +32,7 @@ make_plot <- function(data, trta, param) {
             ggplot2::geom_line() +
             ggplot2::facet_wrap(.~PARAM, scales = "free_y")
 
-         suppressWarnings(print(plot))
+         plotly::ggplotly(plot)
 
       }
 
