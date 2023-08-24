@@ -4,7 +4,6 @@ test_that("make_table generates no table without param data", {
    expect_null(make_table(data, unique(data$TRTA), NULL))
 })
 
-
 test_that("make_table generates no table without trta data", {
    expect_null(make_table(data, NULL, unique(data$PARAM)))
 })
