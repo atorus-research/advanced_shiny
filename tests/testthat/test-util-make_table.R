@@ -4,11 +4,11 @@ test_that("make_table generates no table without param data", {
    # CODE HERE
 })
 
-test_that("make_plot generates no table without trta data", {
+test_that("make_table generates no table without trta data", {
    # CODE HERE
 })
 
-test_that("make_plot generates a plotly object", {
+test_that("make_table generates a plotly object", {
    # CODE HERE
 })
 
