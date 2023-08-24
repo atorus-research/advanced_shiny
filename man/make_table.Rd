@@ -14,7 +14,7 @@ make_table(data, trta, param)
 \item{param}{parameters to include in the table as rows}
 }
 \value{
-a ggplot2 object to be used inside the app
+a data.frame summary to be used in the app
 }
 \description{
 A table of laboratory values
