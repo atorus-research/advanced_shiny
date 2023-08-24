@@ -5,11 +5,11 @@ test_that("make_table generates no table without param data", {
 })
 
 
-test_that("make_plot generates no table without trta data", {
+test_that("make_table generates no table without trta data", {
    expect_null(make_table(data, NULL, unique(data$PARAM)))
 })
 
-test_that("make_plot generates a plotly object", {
+test_that("make_table generates a data.frame", {
    table <- make_table(data, unique(data$TRTA), unique(data$PARAM))
    expect_true("data.frame" %in% class(table))
 })
