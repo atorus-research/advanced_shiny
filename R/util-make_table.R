@@ -6,8 +6,9 @@
 #' @param trta treatments to include in the table as columns
 #' @param param parameters to include in the table as rows
 #' 
-#' @importFrom dplyr filter group_by summarise select rename rename_at start_with funs
+#' @importFrom dplyr filter group_by summarise select rename rename_at funs
 #' @importFrom Tplyr tplyr_table add_layer group_count build
+#' @importFrom tidyr starts_with
 #'
 #' @return a data.frame summary to be used in the app
 #' @export
