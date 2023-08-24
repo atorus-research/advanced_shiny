@@ -6,7 +6,7 @@
 #' @param trta treatments to include in the table as columns
 #' @param param parameters to include in the table as rows
 #' 
-#' @importFrom dplyr filter group_by summarise
+#' @importFrom dplyr filter group_by summarise select rename rename_at start_with funs
 #' @importFrom Tplyr tplyr_table add_layer group_count build
 #'
 #' @return a data.frame summary to be used in the app
@@ -22,7 +22,13 @@ make_table <- function(data, trta, param) {
          add_layer(
             group_count(AVISIT, PARAM)
          ) |>
-         build()
+         build() |>
+         select(-c(starts_with('ord'))) |>
+         rename(
+            Parameter = row_label1,
+            Week = row_label2,
+         ) |>
+         rename_at(vars(starts_with('var1_')), funs(sub('var1_', '', .)))
    }
    
 }

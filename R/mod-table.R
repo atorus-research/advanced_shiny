@@ -1,13 +1,52 @@
+#' Table UI
+#'
+#' @param id namespace of the table modules
+#' @importFrom reactable reactableOutput
+#'
+#' @return table UI
+#' @export
 tableUI <- function(id) {
   ns <- NS(id)
-  nav_panel("Table", NULL)
+  ns <- NS(id)
+  nav_panel("Table",
+            tags$div(class="left-margin",
+                     shiny::tags$div(
+                        class="custom-flexbox",
+                        controlsUI(ns("controls"))
+                     ),
+                     h1("Table of Labs")
+            ),
+            reactable::reactableOutput(ns("table"))
+  )
 }
 
-tableServer <- function(id) {
+#' Table Server code
+#'
+#' @param id matching namespace of UI function
+#' @param data data to display in the table, passed to make_table
+#' @importFrom reactable reactable renderReactable colDef
+#'
+#' @export
+tableServer <- function(id, data) {
   moduleServer(
     id,
     function(input, output, session) {
-
+       
+       ns <- session$ns
+       controls <- controlsServer("controls", data)
+       
+       observe({
+          output$table <- renderReactable({
+             logger::log_info(sprintf("[%s] reacttable triggered", id))
+             reactable(
+                make_table(data()$adlb, controls$trta(), controls$param()),
+                groupBy = "Parameter",
+                defaultPageSize = 20
+               )
+          })
+       }) |> bindEvent(
+          data()
+       )
     }
   )
 }

@@ -43,14 +43,10 @@ bdasap_app <- function(runApp = TRUE){
          
          ############### TABLE ##########################
          
-         # this can be refactored using bindEvent
-         manipulated_data <- shiny::reactive(make_table(data()$adlb)) |>
-            shiny::bindEvent(data())
-         
          # reactives get passed to modules as functions!
          # we _call_ the reactive INSIDE the module
          plotServer("plot", data)
-         tableServer("table")
+         tableServer("table", data)
          
          ################ Exercise ##################
          

@@ -111,9 +111,7 @@ plotServer <- function(id, data) {
                logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
                make_plot(data()$adlb, controls$trta(), controls$param())
             })
-         }) %>% bindEvent(
-            data()
-         )
+         }) |> bindEvent( data() )
          
       }
    )

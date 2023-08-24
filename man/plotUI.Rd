@@ -5,13 +5,19 @@
 \title{Plot Module UI}
 \usage{
 plotUI(id)
+
+plotUI(id)
 }
 \arguments{
 \item{id}{unique namespace of the plotting module}
 }
 \value{
 a plot module with a title, subtitle, and plot
+
+a plot module with a title, subtitle, and plot
 }
 \description{
+Plot Module UI
+
 Plot Module UI
 }
