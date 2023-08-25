@@ -4,9 +4,6 @@
 #' 
 #' @export run_bdasap
 #' 
-#' @import shiny
-#' @importFrom bslib page_navbar bs_theme nav_panel
-#' @importFrom sass font_google
 #'
 run_bdasap <- function() {
    # include the path for the images in isnt/ folder
