@@ -18,7 +18,7 @@ plotUI <- function(id) {
                h1("Plot of Labs"),
                uiOutput(ns('subtitle'))
             ),
-            plotlyOutput(ns("plot"))
+            plotlyOutput(ns("disp_plot"))
   )
 }
 
@@ -52,7 +52,7 @@ plotServer <- function(id, data) {
        })
 
        observe({
-          output$plot <- renderPlotly({
+          output$disp_plot <- renderPlotly({
           logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
           make_plot(data()$adlb, controls$trta(), controls$param())
        })

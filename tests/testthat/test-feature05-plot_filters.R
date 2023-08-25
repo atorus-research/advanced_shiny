@@ -5,7 +5,7 @@ testthat::describe("Feature 05: Plot interacts with controls module", {
    
    # we need to wait for the plotly object to exists
    init_values <- driver_app$get_values()
-   plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+   plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
    
    it("a plot is drawn with treatments lines of 
       [Placebo Xanomeline High Dose Xanomeline Low Dose] 
@@ -26,7 +26,7 @@ testthat::describe("Feature 05: Plot interacts with controls module", {
          'plot-controls-trta' = c("Xanomeline High Dose", "Xanomeline Low Dose")
       )
       
-      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
       treatments <- unique(new_plotly_obj$x$data$name)
       
       expected <- c("Xanomeline High Dose", "Xanomeline Low Dose")
@@ -57,7 +57,7 @@ testthat::describe("Feature 05: Plot interacts with controls module", {
             )
          )
          
-      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
       facets <- new_plotly_obj$x$layout$annotations$text[-c(1,2)]
       expect_equal(length(facets), 17)
    })
