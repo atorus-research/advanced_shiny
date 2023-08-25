@@ -10,11 +10,11 @@ bdasap_app <- function(runApp = TRUE){
    
    # build app object
    app <- shiny::shinyApp(
-      ui = tagList(
+       ui = tagList(
          page_navbar(
             title = tags$div(
                shiny::img(
-                  src = "logo-shiny.png",
+                  src = "www/logo-shiny.png",
                   height = 50,
                   width = 45,
                   style = "margin:10px 10px"
@@ -32,7 +32,7 @@ bdasap_app <- function(runApp = TRUE){
             tableUI('table')
          ),
          shiny::verbatimTextOutput("debug"),
-         shiny::includeCSS("inst/www/styles.css")
+         shiny::includeCSS(path = "www/styles.css", package = "bdasap")
       ),
       server = function(input, output, session){
          
