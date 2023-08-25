@@ -12,6 +12,7 @@ Imports:
   shiny,
   dplyr,
   ggplot2,
+  plotly,
   bslib,
   sass,
   haven,

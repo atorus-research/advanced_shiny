@@ -14,7 +14,7 @@ make_plot(data, trta, param)
 \item{param}{parameters to facet the plot by}
 }
 \value{
-a ggplot2 object to be used inside the app
+a plotly object to be used inside the app
 }
 \description{
 A faceted parameter plot 
