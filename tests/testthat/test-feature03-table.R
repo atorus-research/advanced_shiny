@@ -1,5 +1,5 @@
 app <- here::here("app.R")
-driver_app <- shinytest2::AppDriver$new(app, timeout = 100000)
+driver_app <- shinytest2::AppDriver$new(app, timeout = 150000)
 
 testthat::describe("Feature 03: Table created using data from ADLB", {
    
@@ -8,7 +8,6 @@ testthat::describe("Feature 03: Table created using data from ADLB", {
    
    # simulate clicking the table tab
    driver_app$run_js("document.querySelectorAll('[data-value=\"Table\"]')[0].click()")
-   
    
    # get the table object
    table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-disp_table']])
