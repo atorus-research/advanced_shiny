@@ -29,15 +29,15 @@ plotUI <- function(id) {
 #' 
 #' @export
 plotServer <- function(id, data) {
-  moduleServer(
+  shiny::moduleServer(
     id,
     function(input, output, session) {
 
        controls <- controlsServer("controls", data)
 
-       output$subtitle <- renderUI({
-          tags$div(
-             class="subtitle",
+       output$subtitle <- shiny::renderUI({
+          shiny::tags$div(
+             class = "subtitle",
              paste0(
                 "Averaged measurements of selected parameters by treatments: ",
                 paste(controls$trta(), collapse = ", "),
@@ -46,7 +46,7 @@ plotServer <- function(id, data) {
           )
        })
 
-       output$plot <- renderPlot({
+       output$plot <- shiny::renderPlot({
           make_plot(data()$adlb, controls$trta(), controls$param())
        })
 
@@ -57,23 +57,22 @@ plotServer <- function(id, data) {
 #'
 #' @param id unique namespace of the plotting module
 #' 
-#' @importFrom plotly plotlyOutput renderPlotly
 #'
 #' @return a plot module with a title, subtitle, and plot
 #' @export
 plotUI <- function(id) {
-   ns <- NS(id)
-   nav_panel("Plot",
-             tags$div(class="left-margin",
+   ns <- shiny::NS(id)
+   bslib::nav_panel("Plot",
+             shiny::tags$div(class="left-margin",
                       shiny::tags$div(
                          class="custom-flexbox",
                          controlsUI(ns("controls")),
                          shiny::actionButton("print", "Print Plot")
                       ),
-                      h1("Plot of Labs"),
-                      uiOutput(ns('subtitle'))
+                      shiny::h1("Plot of Labs"),
+                      shiny::uiOutput(ns('subtitle'))
              ),
-             plotlyOutput(ns("plot"))
+             plotly::plotlyOutput(ns("plot"))
    )
 }
 
@@ -86,7 +85,7 @@ plotUI <- function(id) {
 #' 
 #' @export
 plotServer <- function(id, data) {
-   moduleServer(
+   shiny::moduleServer(
       id,
       function(input, output, session) {
          
@@ -94,9 +93,9 @@ plotServer <- function(id, data) {
          
          controls <- controlsServer("controls", data)
          
-         output$subtitle <- renderUI({
+         output$subtitle <- shiny::renderUI({
             logger::log_info(sprintf("[%s] plot subtitle triggered", id))
-            tags$div(
+            shiny::tags$div(
                class="subtitle",
                paste0(
                   "Averaged measurements of selected parameters by treatments: ",
@@ -106,12 +105,12 @@ plotServer <- function(id, data) {
             )
          })
          
-         observe({
-            output$plot <- renderPlotly({
+         shiny::observe({
+            output$plot <- plotly::renderPlotly({
                logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
                make_plot(data()$adlb, controls$trta(), controls$param())
             })
-         }) %>% bindEvent(
+         }) |> shiny::bindEvent(
             data()
          )
          
