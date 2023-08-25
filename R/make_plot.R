@@ -8,10 +8,8 @@
 #' @param trta treatments to average for each line over time
 #' @param param parameters to facet the plot by
 #' 
-#' @importFrom dplyr filter group_by summarise
-#' @importFrom ggplot2 ggplot aes geom_point geom_line facet_wrap
-#'
 #' @return a ggplot2 object to be used inside the app
+#' 
 #' @export
 make_plot <- function(data, trta, param) {
 
