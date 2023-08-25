@@ -7,11 +7,11 @@
 #'
 #' @export
 controlsUI <- function(id) {
-  ns <- NS(id)
-  tags$div(
+  ns <- shiny::NS(id)
+  shiny::tags$div(
      class="custom-flexbox",
-     selectInput(ns("trta"), "Treatments", NULL, multiple = TRUE),
-     selectInput(ns("param"), "Parameters", NULL, multiple = TRUE, width = '900px')
+     shiny::selectInput(ns("trta"), "Treatments", NULL, multiple = TRUE),
+     shiny::selectInput(ns("param"), "Parameters", NULL, multiple = TRUE, width = '900px')
   )
 }
 
@@ -23,20 +23,20 @@ controlsUI <- function(id) {
 #'
 #' @export
 controlsServer <- function(id, data) {
-  moduleServer(
+   shiny::moduleServer(
     id,
     function(input, output, session) {
 
        ns <- session$ns
 
-       observeEvent(data(), {
-          updateSelectInput(
+       shiny::observeEvent(data(), {
+          shiny::updateSelectInput(
              session,
              "trta",
              choices = unique(data()$adlb$TRTA),
              selected = unique(data()$adlb$TRTA)
           )
-          updateSelectInput(
+          shiny::updateSelectInput(
              session,
              "param",
              choices = unique(data()$adlb$PARAM),
@@ -46,8 +46,8 @@ controlsServer <- function(id, data) {
 
        return(
           list(
-             trta = reactive(input$trta),
-             param = reactive(input$param)
+             trta = shiny::reactive(input$trta),
+             param = shiny::reactive(input$param)
           )
        )
 

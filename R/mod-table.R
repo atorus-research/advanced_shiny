@@ -1,10 +1,10 @@
 tableUI <- function(id) {
-  ns <- NS(id)
-  nav_panel("Table", NULL)
+  ns <- shiny::NS(id)
+  bslib::nav_panel("Table", NULL)
 }
 
 tableServer <- function(id) {
-  moduleServer(
+  shiny::moduleServer(
     id,
     function(input, output, session) {
 

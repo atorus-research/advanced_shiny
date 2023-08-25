@@ -1,22 +1,21 @@
 #' Plot Module UI
 #'
 #' @param id unique namespace of the plotting module
-#' 
-#' @importFrom plotly plotlyOutput renderPlotly
+#' @importFrom plotly plotlyOutput
 #'
 #' @return a plot module with a title, subtitle, and plot
 #' @export
 plotUI <- function(id) {
-   ns <- NS(id)
-   nav_panel("Plot",
-             tags$div(class="left-margin",
+   ns <- shiny::NS(id)
+   bslib::nav_panel("Plot",
+             shiny::tags$div(class="left-margin",
                       shiny::tags$div(
                          class="custom-flexbox",
                          controlsUI(ns("controls")),
                          shiny::actionButton("print", "Print Plot")
                       ),
-                      h1("Plot of Labs"),
-                      uiOutput(ns('subtitle'))
+                      shiny::h1("Plot of Labs"),
+                      shiny::uiOutput(ns('subtitle'))
              ),
              plotlyOutput(ns("disp_plot"))
    )
@@ -31,7 +30,7 @@ plotUI <- function(id) {
 #' 
 #' @export
 plotServer <- function(id, data) {
-   moduleServer(
+   shiny::moduleServer(
       id,
       function(input, output, session) {
          
@@ -39,8 +38,8 @@ plotServer <- function(id, data) {
          
          controls <- controlsServer("controls", data)
          
-         output$subtitle <- renderUI({
-            tags$div(
+         output$subtitle <- shiny::renderUI({
+            shiny::tags$div(
                class="subtitle",
                paste0(
                   "Averaged measurements of selected parameters by treatments: ",
@@ -50,14 +49,14 @@ plotServer <- function(id, data) {
             )
          })
          
-         observe({
-            output$disp_plot <- renderPlotly({
+         shiny::observe({
+            output$disp_plot <- plotly::renderPlotly({
                make_plot(data()$adlb, controls$trta(), controls$param())
             })
-         }) %>% bindEvent(
+         }) |> shiny::bindEvent(
             data()
          )
          
-      }
-   )
-}
+    }
+         
+)}
