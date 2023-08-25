@@ -10,7 +10,7 @@ testthat::describe("Feature 04: Table can be filtered by treatment and parameter
    driver_app$run_js("document.querySelectorAll('[data-value=\"Table\"]')[0].click()")
    
    # get the table object
-   table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-table']])
+   table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-disp_table']])
    
    it("a table is drawn with 5 columns and 18 grouped rows", {
       # CODE HERE
