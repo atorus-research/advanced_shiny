@@ -16,7 +16,7 @@ tableUI <- function(id) {
                      ),
                      h1("Table of Labs")
             ),
-            reactable::reactableOutput(ns("table"))
+            reactable::reactableOutput(ns("disp_table"))
   )
 }
 
@@ -36,8 +36,7 @@ tableServer <- function(id, data) {
        controls <- controlsServer("controls", data)
        
        observe({
-          output$table <- renderReactable({
-             logger::log_info(sprintf("[%s] reacttable triggered", id))
+          output$disp_table <- renderReactable({
              reactable(
                 make_table(data()$adlb, controls$trta(), controls$param()),
                 groupBy = "Parameter",
