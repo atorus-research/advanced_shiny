@@ -3,7 +3,7 @@ library(bslib)
 
 ui <- shiny::tagList(
    bslib::page_navbar(
-      title = tags$div(
+      title = shiny::tags$div(
          shiny::img(
             src = "logo-shiny.png",
             height = 50,
