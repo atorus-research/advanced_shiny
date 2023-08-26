@@ -5,6 +5,9 @@
 #' @param data data.frame to use for the table
 #' @param trta treatments to include in the table as columns
 #' @param param parameters to include in the table as rows
+#' 
+#' @importFrom dplyr filter select rename rename_at starts_with
+#' @importFrom Tplyr tplyr_table add_layer group_count build
 #'
 #' @return a data.frame summary to be used in the app
 #' @export
@@ -12,14 +15,20 @@ make_table <- function(data, trta, param) {
    
    if (!is.null(data) & !is.null(trta) & !is.null(param)) {
       data <- data |>
-         dplyr::filter(TRTA %in% trta) |>
-         dplyr::filter(PARAM %in% param)
+         filter(TRTA %in% trta) |>
+         filter(PARAM %in% param)
       
-      Tplyr::tplyr_table(data, TRTA) |>
-         Tplyr::add_layer(
-            Tplyr::group_count(AVISIT, PARAM)
+      tplyr_table(data, TRTA) |>
+         add_layer(
+            group_count(AVISIT, PARAM)
          ) |>
-         Tplyr::build()
+         build() |>
+         select(-c(starts_with('ord'))) |>
+         rename(
+            Parameter = row_label1,
+            Week = row_label2,
+         ) |>
+         rename_at(vars(starts_with('var1_')), list(~sub('var1_', '', .)))
    }
    
 }
