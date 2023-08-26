@@ -5,7 +5,7 @@ testthat::describe("Feature 02: Plot created using data from ADLB", {
    
    # we need to wait for the plotly object to exists
    init_values <- driver_app$get_values()
-   plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-plot']])
+   plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
    
    it("a plotly chart is drawn on the page", {
       expect_true("plotly-main" %in% plotly_obj$deps$name)

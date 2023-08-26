@@ -29,7 +29,7 @@ make_table <- function(data, trta, param) {
             Parameter = row_label1,
             Week = row_label2,
          ) |>
-         rename_at(vars(starts_with('var1_')), funs(sub('var1_', '', .)))
+         rename_at(vars(starts_with('var1_')), list(~sub('var1_', '', .)))
    }
    
 }

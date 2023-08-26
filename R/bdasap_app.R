@@ -2,17 +2,16 @@
 #'
 #' @param runApp should the app be run on completion, defaults to TRUE
 #'
-#' @import shiny
-#' @import bslib
 #'
 #' @export
 bdasap_app <- function(runApp = TRUE){
    
+   addResourcePath("www", system.file("www", package = "bdasap"))
    # build app object
    app <- shiny::shinyApp(
-       ui = tagList(
-         page_navbar(
-            title = tags$div(
+      ui = shiny::tagList(
+         bslib::page_navbar(
+            title = shiny::tags$div(
                shiny::img(
                   src = "www/logo-shiny.png",
                   height = 50,
@@ -21,30 +20,27 @@ bdasap_app <- function(runApp = TRUE){
                ),
                "bdasap"
             ),
-            theme = bs_theme(
+            theme = bslib::bs_theme(
                "navbar-bg" = "white",
                "bs-navbar-active-color" = "#044ed7",
-               base_font = font_google("Red Hat Display"),
-               heading_font = font_google("Red Hat Display")
+               base_font = sass::font_google("Red Hat Display"),
+               heading_font = sass::font_google("Red Hat Display")
             ),
             sidebar = NULL,
             plotUI('plot'),
             tableUI('table')
          ),
          shiny::verbatimTextOutput("debug"),
-         shiny::includeCSS(path = "www/styles.css", package = "bdasap")
+         shiny::includeCSS(system.file("www/styles.css", package = "bdasap"))
       ),
       server = function(input, output, session){
          
-         # reactiveValues
-         all_inputs <- shiny::reactiveValues(
-            trta = NULL, 
-            param = NULL
-         )
-
-         data <- reactive(read_data())
+         data <- shiny::reactive(read_data())
          
-         logger::log_info("data object created")
+         # reactiveValues
+         all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)
+         
+         ############### TABLE ##########################
          
          # reactives get passed to modules as functions!
          # we _call_ the reactive INSIDE the module
@@ -69,7 +65,7 @@ bdasap_app <- function(runApp = TRUE){
    
    # run build app
    if (runApp)
-      runApp(app, test.mode = TRUE)
+      shiny::runApp(app, test.mode = TRUE)
    else
       app
 }

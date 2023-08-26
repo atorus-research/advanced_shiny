@@ -10,7 +10,7 @@ testthat::describe("Feature 04: Table can be filtered by treatment and parameter
    driver_app$run_js("document.querySelectorAll('[data-value=\"Table\"]')[0].click()")
    
    # get the table object
-   table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-table']])
+   table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-disp_table']])
    
    it("a table is drawn with 5 columns and 18 grouped rows", {
       expect_equal(length(table_obj$x$tag$attribs$columns$id), 5)
@@ -27,7 +27,7 @@ testthat::describe("Feature 04: Table can be filtered by treatment and parameter
          'table-controls-trta' = c("Xanomeline High Dose", "Xanomeline Low Dose")
       )
       
-      new_table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-table']])
+      new_table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-disp_table']])
       
       expect_equal(length(new_table_obj$x$tag$attribs$columns$id), 4)
       
@@ -57,7 +57,7 @@ testthat::describe("Feature 04: Table can be filtered by treatment and parameter
             )
          )
          
-         new_table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-table']])
+         new_table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-disp_table']])
          grouping <- new_table_obj$x$tag$attribs$groupBy
          
          expect_equal(

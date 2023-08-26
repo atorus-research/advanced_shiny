@@ -11,7 +11,7 @@ testthat::describe("Feature 03: Table created using data from ADLB", {
    
    
    # get the table object
-   table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-table']])
+   table_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['table-disp_table']])
    
    it("a table is drawn with 5 columns", {
       expect_equal(length(table_obj$x$tag$attribs$columns$id), 5)
