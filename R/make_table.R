@@ -28,4 +28,5 @@ make_table <- function(data, trta, param) {
          ) |>
          rename_at(vars(starts_with('var1_')), list(~sub('var1_', '', .)))
    }
+   
 }
