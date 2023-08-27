@@ -36,6 +36,7 @@ bdasap_app <- function(runApp = TRUE){
       server = function(input, output, session){
          
          data <- shiny::reactive(read_data())
+         logger::log_info("data object created")
          
          # reactiveValues
          all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)

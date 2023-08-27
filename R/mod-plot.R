@@ -40,7 +40,7 @@ plotServer <- function(id, data) {
        controls <- controlsServer("controls", data)
 
        output$subtitle <- renderUI({
-          logger::log_info(sprintf("[%s] plot subtitle triggered", id))
+          logger::log_info(sprintf("[%s] disp_plot subtitle triggered", id))
           tags$div(
              class="subtitle",
              paste0(
@@ -53,7 +53,7 @@ plotServer <- function(id, data) {
 
        observe({
           output$disp_plot <- renderPlotly({
-          logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
+          logger::log_info(sprintf("[%s] disp_plot ggplot2 triggered", id))
           make_plot(data()$adlb, controls$trta(), controls$param())
        })
       }) %>% bindEvent(
