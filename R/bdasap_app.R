@@ -6,7 +6,7 @@
 #' @export
 bdasap_app <- function(runApp = TRUE){
    
-   addResourcePath("www", system.file("www", package = "bdasap"))
+   shiny::addResourcePath("www", system.file("www", package = "bdasap"))
    # build app object
    app <- shiny::shinyApp(
       ui = shiny::tagList(
