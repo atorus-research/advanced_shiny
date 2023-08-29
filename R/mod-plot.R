@@ -1,23 +1,23 @@
 #' Plot Module UI
 #'
 #' @param id unique namespace of the plotting module
-#' @importFrom plotly plotlyOutput
 #'
 #' @return a plot module with a title, subtitle, and plot
+#' 
 #' @export
 plotUI <- function(id) {
    ns <- shiny::NS(id)
    bslib::nav_panel("Plot",
-             shiny::tags$div(class="left-margin",
+             shiny::tags$div(class = "left-margin",
                       shiny::tags$div(
-                         class="custom-flexbox",
+                         class = "custom-flexbox",
                          controlsUI(ns("controls")),
                          shiny::actionButton("print", "Print Plot")
                       ),
                       shiny::h1("Plot of Labs"),
                       shiny::uiOutput(ns('subtitle'))
              ),
-             plotlyOutput(ns("disp_plot"))
+             plotly::plotlyOutput(ns("disp_plot"))
    )
 }
 
@@ -40,7 +40,7 @@ plotServer <- function(id, data) {
          
          output$subtitle <- shiny::renderUI({
             shiny::tags$div(
-               class="subtitle",
+               class = "subtitle",
                paste0(
                   "Averaged measurements of selected parameters by treatments: ",
                   paste(controls$trta(), collapse = ", "),

@@ -9,6 +9,7 @@
 #' @param param parameters to facet the plot by
 #' 
 #' @return a ggplot2 object to be used inside the app
+#' 
 #' @export
 make_plot <- function(data, trta, param) {
    
