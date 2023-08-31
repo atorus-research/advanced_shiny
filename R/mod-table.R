@@ -7,7 +7,6 @@
 #' @export
 tableUI <- function(id) {
   ns <- NS(id)
-  ns <- NS(id)
   nav_panel("Table",
             tags$div(class="left-margin",
                      shiny::tags$div(
