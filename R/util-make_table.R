@@ -28,7 +28,7 @@ make_table <- function(data, trta, param) {
          ) |>
          dplyr::rename_at(
             dplyr::vars(
-               tidyselect::starts_with('var1_')), list(~sub('var1_', '', .)))
+               dplyr::starts_with('var1_')), list(~sub('var1_', '', .)))
    }
    
 }
