@@ -1,13 +1,12 @@
 #' Table UI
 #'
 #' @param id namespace of the table modules
-#' @importFrom reactable reactableOutput
 #'
 #' @return table UI
 #' @export
 tableUI <- function(id) {
   ns <- NS(id)
-  nav_panel("Table",
+  bslib::nav_panel("Table",
             tags$div(class="left-margin",
                      shiny::tags$div(
                         class="custom-flexbox",
@@ -23,7 +22,6 @@ tableUI <- function(id) {
 #'
 #' @param id matching namespace of UI function
 #' @param data data to display in the table, passed to make_table
-#' @importFrom reactable reactable renderReactable colDef
 #'
 #' @export
 tableServer <- function(id, data) {
@@ -35,8 +33,8 @@ tableServer <- function(id, data) {
        controls <- controlsServer("controls", data)
        
        observe({
-          output$disp_table <- renderReactable({
-             reactable(
+          output$disp_table <- reactable::renderReactable({
+             reactable::reactable(
                 make_table(data()$adlb, controls$trta(), controls$param()),
                 groupBy = "Parameter",
                 defaultPageSize = 20

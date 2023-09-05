@@ -2,6 +2,7 @@
 #'
 #' @param runApp should the app be run on completion, defaults to TRUE
 #'
+#' @import shiny
 #'
 #' @export
 bdasap_app <- function(runApp = TRUE){

@@ -5,8 +5,6 @@
 \title{Plot module server}
 \usage{
 plotServer(id, data)
-
-plotServer(id, data)
 }
 \arguments{
 \item{id}{matching unique namespace ID of the UI module}
@@ -14,7 +12,5 @@ plotServer(id, data)
 \item{data}{data used for plotting and controls}
 }
 \description{
-controls subset the plot and change the subtitle of the module
-
 controls subset the plot and change the subtitle of the module
 }
