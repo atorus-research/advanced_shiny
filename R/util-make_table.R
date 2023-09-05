@@ -20,7 +20,8 @@ make_table <- function(data, trta, param) {
             Tplyr::group_count(AVISIT, PARAM)
          ) |>
          Tplyr::build() |>
-         dplyr::select(-c(starts_with('ord'))) |>
+         dplyr::select(-c(
+            tidyselect::starts_with('ord'))) |>
          dplyr::rename(
             Parameter = row_label1,
             Week = row_label2,
