@@ -2,13 +2,12 @@
 #'
 #' @param id unique namespace of the plotting module
 #' 
-#' @importFrom plotly plotlyOutput renderPlotly
 #'
 #' @return a plot module with a title, subtitle, and plot
 #' @export
 plotUI <- function(id) {
   ns <- NS(id)
-  nav_panel("Plot",
+  bslib::nav_panel("Plot",
             tags$div(class="left-margin",
               shiny::tags$div(
                class="custom-flexbox",
@@ -18,7 +17,7 @@ plotUI <- function(id) {
                h1("Plot of Labs"),
                uiOutput(ns('subtitle'))
             ),
-            plotlyOutput(ns("disp_plot"))
+            plotly::plotlyOutput(ns("disp_plot"))
   )
 }
 
@@ -52,7 +51,7 @@ plotServer <- function(id, data) {
        })
 
        observe({
-          output$disp_plot <- renderPlotly({
+          output$disp_plot <- plotly::renderPlotly({
           logger::log_info(sprintf("[%s] disp_plot ggplot2 triggered", id))
           make_plot(data()$adlb, controls$trta(), controls$param())
        })
