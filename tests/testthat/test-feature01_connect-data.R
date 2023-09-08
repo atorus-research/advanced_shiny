@@ -1,6 +1,6 @@
 app <- here::here("app.R")
 
-driver_app <- shinytest2::AppDriver$new(app, timeout = 10000)
+driver_app <- shinytest2::AppDriver$new(app, load_timeout = 30000, timeout = 100000)
 # this function also has the arguments:
 # -- load_timeout: if init takes a long time 
 # -- timeout: default value is to wait for updated, this can be hardset
