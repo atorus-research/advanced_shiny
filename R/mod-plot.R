@@ -51,15 +51,34 @@ plotServer <- function(id, data) {
           )
        })
 
-       observe({
-          output$disp_plot <- renderPlotly({
+      output$disp_plot <- renderPlotly({
+         
+          print("--- START PLOTTING! --- ")
+          print(Sys.time())
+            
           logger::log_info(sprintf("[%s] disp_plot ggplot2 triggered", id))
-          make_plot(data()$adlb, controls$trta(), controls$param())
-       })
-      }) %>% bindEvent(
-           data()
-         )
+          p <- make_plot(data()$adlb, controls$trta(), controls$param())
+          
+          
+          print("--- STOP PLOTTING! --- ")
+          print(Sys.time())
+          
+          p
+          
+      }) %>%
+             # think of this as a temp DB 
+             # the arguments we put here uniquely define plots
+             # the first time the plot generates it maps the original data
+             # the original trta
+             # the original param
+             # change stuff - new plot
+             # now change back, the second redraw is way faster than the first!
+             # you can do it per session: when you close you start over
+             # per app: you can store it on the shiny server!! 
+             # in memory caching (just stored in your server until it restarts)
+             # bindCache(data(), controls$trta(), controls$param())
+          bindCache(data(), controls$trta(), controls$param())
+          
+      })
 
-    }
-  )
 }
