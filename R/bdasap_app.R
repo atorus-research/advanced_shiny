@@ -40,7 +40,8 @@ bdasap_app <- function(runApp = TRUE){
          logger::log_info("data object created")
          
          # reactiveValues
-         all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)
+         # all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL, session = session)
+         vals <- reactive(reactiveValuesToList(x = input, all.names = TRUE))
          
          ############### TABLE ##########################
          
@@ -58,8 +59,13 @@ bdasap_app <- function(runApp = TRUE){
          #
          # we'll eventually use this object
          # to store selections in a database!
+         
          shiny::onStop(function(){
-            write_inputs(all_inputs)
+            # add shiny session info to the list
+            full_list <- isolate(vals())
+            # there's some artifacts in the list we don't need
+            # lets just return user controls for both the plot and table
+            write_inputs(full_list[grep("-controls-", names(full_list))])
          })
          
       }

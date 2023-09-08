@@ -28,11 +28,21 @@ plotUI <- function(id) {
 #' @param id matching unique namespace ID of the UI module
 #' @param data data used for plotting and controls
 #' 
+#' 
 #' @export
 plotServer <- function(id, data) {
   moduleServer(
     id,
     function(input, output, session) {
+       
+       # browser()
+       
+       # you need to be inside a shiny context 
+       # (something that can listen)
+       # ie - observe | reactive
+       # observe({
+       #    browser()
+       # })
        
        ns <- session$ns
 
@@ -50,10 +60,15 @@ plotServer <- function(id, data) {
           )
        })
 
-      output$disp_plot <- renderPlotly({
+      # observe({
+          
+      output$disp_plot <- plotly::renderPlotly({
+          
+          # browser( )
          
           print("--- START PLOTTING! --- ")
           print(Sys.time())
+          
           logger::log_info(sprintf("[%s] disp_plot ggplot2 triggered", id))
           p <- make_plot(data()$adlb, controls$trta(), controls$param())
           
@@ -63,9 +78,11 @@ plotServer <- function(id, data) {
           
           p
           
-      }) %>%
-          bindCache(data(), controls$trta(), controls$param())
+      }) # %>% bindCache(data(), controls$trta(), controls$param())
           
-      })
+      # }) %>% 
+      #   bindEvent(data(), controls$trta(), controls$param())
+      
+    })
 
 }
