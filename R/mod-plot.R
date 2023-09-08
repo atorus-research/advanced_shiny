@@ -64,17 +64,6 @@ plotServer <- function(id, data) {
           p
           
       }) %>%
-             # think of this as a temp DB 
-             # the arguments we put here uniquely define plots
-             # the first time the plot generates it maps the original data
-             # the original trta
-             # the original param
-             # change stuff - new plot
-             # now change back, the second redraw is way faster than the first!
-             # you can do it per session: when you close you start over
-             # per app: you can store it on the shiny server!! 
-             # in memory caching (just stored in your server until it restarts)
-             # bindCache(data(), controls$trta(), controls$param())
           bindCache(data(), controls$trta(), controls$param())
           
       })
