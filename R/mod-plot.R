@@ -1,12 +1,13 @@
 #' Plot Module UI
 #'
 #' @param id unique namespace of the plotting module
+#' 
 #'
 #' @return a plot module with a title, subtitle, and plot
 #' @export
 plotUI <- function(id) {
   ns <- NS(id)
-  nav_panel("Plot",
+  bslib::nav_panel("Plot",
             tags$div(class="left-margin",
               shiny::tags$div(
                class="custom-flexbox",
@@ -16,7 +17,7 @@ plotUI <- function(id) {
                h1("Plot of Labs"),
                uiOutput(ns('subtitle'))
             ),
-            plotOutput(ns("plot"))
+            plotly::plotlyOutput(ns("disp_plot"))
   )
 }
 
@@ -27,18 +28,28 @@ plotUI <- function(id) {
 #' @param id matching unique namespace ID of the UI module
 #' @param data data used for plotting and controls
 #' 
+#' 
 #' @export
 plotServer <- function(id, data) {
   moduleServer(
     id,
     function(input, output, session) {
        
+       # browser()
+       
+       # you need to be inside a shiny context 
+       # (something that can listen)
+       # ie - observe | reactive
+       # observe({
+       #    browser()
+       # })
+       
        ns <- session$ns
 
        controls <- controlsServer("controls", data)
 
        output$subtitle <- renderUI({
-          logger::log_info(sprintf("[%s] plot subtitle triggered", id))
+          logger::log_info(sprintf("[%s] disp_plot subtitle triggered", id))
           tags$div(
              class="subtitle",
              paste0(
@@ -49,11 +60,29 @@ plotServer <- function(id, data) {
           )
        })
 
-       output$plot <- renderPlot({
-          logger::log_info(sprintf("[%s] plot ggplot2 triggered", id))
-          make_plot(data()$adlb, controls$trta(), controls$param())
-       })
+      # observe({
+          
+      output$disp_plot <- plotly::renderPlotly({
+          
+          # browser( )
+         
+          print("--- START PLOTTING! --- ")
+          print(Sys.time())
+          
+          logger::log_info(sprintf("[%s] disp_plot ggplot2 triggered", id))
+          p <- make_plot(data()$adlb, controls$trta(), controls$param())
+          
+          
+          print("--- STOP PLOTTING! --- ")
+          print(Sys.time())
+          
+          p
+          
+      }) # %>% bindCache(data(), controls$trta(), controls$param())
+          
+      # }) %>% 
+      #   bindEvent(data(), controls$trta(), controls$param())
+      
+    })
 
-    }
-  )
 }

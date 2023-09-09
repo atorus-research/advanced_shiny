@@ -1,0 +1,67 @@
+app <- here::here("app.R")
+driver_app <- shinytest2::AppDriver$new(app, timeout = 100000)
+
+testthat::describe("Feature 05: Plot interacts with controls module", {
+   
+   # we need to wait for the plotly object to exists
+   init_values <- driver_app$get_values()
+   plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
+   
+   it("a plot is drawn with treatments lines of 
+      [Placebo Xanomeline High Dose Xanomeline Low Dose] 
+      with 18 facets", {
+      
+      facets <- plotly_obj$x$layout$annotations$text[-c(1,2)]
+      expect_equal(18, length(facets))
+      
+      treatments <- unique(plotly_obj$x$data$name)
+      expected <- c("Placebo", "Xanomeline High Dose", "Xanomeline Low Dose")
+      expect_equal(treatments, expected)
+   })
+   
+   it("remove Placebo from the treatment dropdown,
+      plots now have two lines and the placebo line is removed from the legend", {
+      
+      driver_app$set_inputs(
+         'plot-controls-trta' = c("Xanomeline High Dose", "Xanomeline Low Dose")
+      )
+      
+      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
+      treatments <- unique(new_plotly_obj$x$data$name)
+      
+      expected <- c("Xanomeline High Dose", "Xanomeline Low Dose")
+      expect_equal(treatments, expected)
+      
+   })
+   
+   it("remove Sodium (mmol/L) from the parameter list,
+      there are now 17 facets in the plot", {
+         
+         driver_app$set_inputs(
+            'plot-controls-param' = c(
+               "Alanine Aminotransferase (U/L)",
+               "Albumin (g/L)",               
+               "Alkaline Phosphatase (U/L)",
+               "Aspartate Aminotransferase (U/L)",
+               "Bilirubin (umol/L)",
+               "Blood Urea Nitrogen (mmol/L)" ,   
+               "Calcium (mmol/L)",
+               "Chloride (mmol/L)",              
+               "Cholesterol (mmol/L)",
+               "Creatine Kinase (U/L)",
+               "Creatinine (umol/L)",
+               "Gamma Glutamyl Transferase (U/L)",
+               "Glucose (mmol/L)","Phosphate (mmol/L)",            
+               "Potassium (mmol/L)","Protein (g/L)",
+               "Urate (umol/L)"
+            )
+         )
+         
+      new_plotly_obj <- jsonlite::fromJSON(driver_app$get_values()$output[['plot-disp_plot']])
+      facets <- new_plotly_obj$x$layout$annotations$text[-c(1,2)]
+      expect_equal(length(facets), 17)
+   })
+   
+})
+
+driver_app$stop()

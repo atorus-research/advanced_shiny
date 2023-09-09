@@ -6,25 +6,29 @@
 #' @param trta treatments to include in the table as columns
 #' @param param parameters to include in the table as rows
 #' 
-#' @importFrom dplyr filter group_by summarise
-#' @importFrom Tplyr tplyr_table add_layer group_count build
 #'
-#' @return a ggplot2 object to be used inside the app
+#' @return a data.frame summary to be used in the app
 #' @export
-make_table <- function(data, trta, paramcd) {
+make_table <- function(data, trta, param) {
    
    if (!is.null(data) & !is.null(trta) & !is.null(param)) {
       data <- data |>
-         filter(TRTA %in% trta) |>
-         filter(PARAM %in% param) |>
-         group_by(TRTA, PARAM, AVISITN) |>
-         summarise(AVAL = mean(AVAL), .groups = 'keep')
+         dplyr::filter(TRTA %in% trta) |>
+         dplyr::filter(PARAM %in% param)
       
-      tplyr_table(data$adlb, TRTA) |>
-         add_layer(
-            group_count(PARAMCD)
+      tplyr_table(data, TRTA) |>
+         Tplyr::add_layer(
+            Tplyr::group_count(AVISIT, PARAM)
          ) |>
-         build()
+         Tplyr::build() |>
+         dplyr::select(-c(starts_with('ord'))) |>
+         dplyr::rename(
+            Parameter = row_label1,
+            Week = row_label2,
+         ) |>
+         dplyr::rename_at(
+            dplyr::vars(
+               tidyselect::starts_with('var1_')), list(~sub('var1_', '', .)))
    }
-
+   
 }

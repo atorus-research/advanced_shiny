@@ -3,41 +3,52 @@
 #' @param runApp should the app be run on completion, defaults to TRUE
 #'
 #' @import shiny
-#' @import bslib
 #'
 #' @export
 bdasap_app <- function(runApp = TRUE){
    
+   addResourcePath("www", system.file("www", package = "bdasap"))
    # build app object
    app <- shiny::shinyApp(
-      ui = tagList(
-         page_navbar(
-            title = "Laboratory Value Explorer",
-            theme = bs_theme(
+      ui = shiny::tagList(
+         bslib::page_navbar(
+            title = shiny::tags$div(
+               shiny::img(
+                  src = "www/logo-shiny.png",
+                  height = 50,
+                  width = 45,
+                  style = "margin:10px 10px"
+               ),
+               "bdasap"
+            ),
+            theme = bslib::bs_theme(
                "navbar-bg" = "white",
                "bs-navbar-active-color" = "#044ed7",
-               base_font = font_google("Red Hat Display"),
-               heading_font = font_google("Red Hat Display")
+               base_font = sass::font_google("Red Hat Display"),
+               heading_font = sass::font_google("Red Hat Display")
             ),
             sidebar = NULL,
             plotUI('plot'),
             tableUI('table')
          ),
          shiny::verbatimTextOutput("debug"),
-         shiny::includeCSS("inst/www/styles.css")
+         shiny::includeCSS(system.file("www/styles.css", package = "bdasap"))
       ),
       server = function(input, output, session){
          
-         data <- reactive(read_data())
+         data <- shiny::reactive(read_data())
          logger::log_info("data object created")
          
          # reactiveValues
-         all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL)
+         # all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL, session = session)
+         vals <- reactive(reactiveValuesToList(x = input, all.names = TRUE))
+         
+         ############### TABLE ##########################
          
          # reactives get passed to modules as functions!
          # we _call_ the reactive INSIDE the module
          plotServer("plot", data)
-         tableServer("table")
+         tableServer("table", data)
          
          ################ Exercise ##################
          
@@ -48,8 +59,13 @@ bdasap_app <- function(runApp = TRUE){
          #
          # we'll eventually use this object
          # to store selections in a database!
+         
          shiny::onStop(function(){
-            write_inputs(all_inputs)
+            # add shiny session info to the list
+            full_list <- isolate(vals())
+            # there's some artifacts in the list we don't need
+            # lets just return user controls for both the plot and table
+            write_inputs(full_list[grep("-controls-", names(full_list))])
          })
          
       }
@@ -57,7 +73,7 @@ bdasap_app <- function(runApp = TRUE){
    
    # run build app
    if (runApp)
-      runApp(app, test.mode = TRUE)
+      shiny::runApp(app, test.mode = TRUE)
    else
       app
 }
