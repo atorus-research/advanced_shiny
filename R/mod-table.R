@@ -35,7 +35,7 @@ tableServer <- function(id, data) {
          observe({
             output$disp_table <- reactable::renderReactable({
                logger::log_info(sprintf("[%s] reacttable triggered", id))
-               reactable(
+               reactable::reactable(
                   make_table(data()$adlb, controls$trta(), controls$param()),
                   groupBy = "Parameter",
                   defaultPageSize = 20
