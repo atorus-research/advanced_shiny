@@ -51,20 +51,18 @@ write_inputs <- function(lst) {
                          port = options()$mysql$port,
                          Trusted_Connection = options()$mysql$Trusted_Connection)
    
+# append user selections to table -----------------------------------------
+   DBI::dbAppendTable(conn = con, name = "user_selections", value = user_selection_cache)
+
+# disconnect from DB ------------------------------------------------------
+   DBI::dbDisconnect(conn = con)
 
 # create a new table for user selections ----------------------------------
 # - only need to do this once!
 #   DBI::dbCreateTable(conn = con, name = "user_selections", fields = user_selection_cache)
    
+   if (nrow(user_selection_cache) > 0) {
+      logger::log_info(sprintf("[ %s ] rows added to [ `user_selections` ] table for user [ %s ]", nrow(user_selection_cache), user))
+   }
 
-# append user selections to table -----------------------------------------
-   DBI::dbAppendTable(conn = con, name = "user_selections", value = user_selection_cache)
-   
-# disconnect from DB ------------------------------------------------------
-   DBI::dbDisconnect(conn = con)
-   
-   # if (nrow(user_selection_cache) > 0) {
-   #    logger::log_info(sprintf("[%s] rows added to [ `user_selections` ] table for user [%s]", nrow(user_selection_cache), user))
-   # }
-   # 
 }
