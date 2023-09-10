@@ -12,6 +12,3 @@ write_inputs(lst)
 \description{
 Function to write the user session info
 }
-\examples{
-write_inputs(all_inputs)
-}

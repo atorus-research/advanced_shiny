@@ -3,9 +3,15 @@
 #' Function to write the user session info 
 #' 
 #' @param lst list of reactive values from the application
+#' 
+#' @importFrom DBI dbConnect dbAppendTable dbDisconnect
+#' @importFrom dplyr bind_rows pull tibble
+#' @importFrom logger log_info
+#' @importFrom odbc odbc
+#' @importFrom purrr imap list_rbind
 #'
 #' @export
-#' @examples write_inputs(all_inputs)
+
 write_inputs <- function(lst) {
    
 # get user info -----------------------------------------------------------
@@ -25,7 +31,7 @@ write_inputs <- function(lst) {
          selected = selected,
          time = as.character(Sys.time())
          )
-   }) %>% 
+   }) |> 
       purrr::list_rbind()
    
 
@@ -62,7 +68,9 @@ write_inputs <- function(lst) {
 #   DBI::dbCreateTable(conn = con, name = "user_selections", fields = user_selection_cache)
    
    if (nrow(user_selection_cache) > 0) {
-      logger::log_info(sprintf("[ %s ] rows added to [ `user_selections` ] table for user [ %s ]", nrow(user_selection_cache), user))
+      logger::log_info(
+         sprintf("[ %s ] rows added to [ `user_selections` ] table for user [ %s ]", nrow(user_selection_cache), user)
+         )
    }
 
 }

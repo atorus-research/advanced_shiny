@@ -2,8 +2,8 @@
 #' 
 #' Function to read in data needed for application
 #' 
+#' @importFrom DBI dbConnect dbDisconnect dbGetQuery 
 #' @importFrom odbc odbc
-#' @importFrom DBI dbConnect dbDisconnect dbReadTable 
 #'
 #' @return a list of data.frames for use in the application
 #' @export

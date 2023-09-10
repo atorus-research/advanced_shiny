@@ -10,11 +10,16 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     bslib,
+    DBI,
     dplyr,
     ggplot2,
     haven,
+    logger,
+    odbc,
     plotly,
+    purrr,
     shiny,
+    shinytest2,
     Tplyr
 Suggests: 
     testthat (>= 3.0.0)
