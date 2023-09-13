@@ -31,6 +31,7 @@ bdasap_app <- function(runApp = TRUE){
             plotUI('plot'),
             tableUI('table')
          ),
+         shiny::code("bdasap_app.R"),
          shiny::verbatimTextOutput("debug"),
          shiny::includeCSS(system.file("www/styles.css", package = "bdasap"))
       ),
@@ -53,8 +54,11 @@ bdasap_app <- function(runApp = TRUE){
          # set up a listener to update all_values
          # from NULL to the currently selected inputs
          # for param and trta
-         #
-         #
+         # output$debug <- shiny::renderPrint({
+         #    all_vals <- shiny::reactiveValuesToList(x = input, all.names = TRUE)
+         #    vals <- grep(pattern = "-controls-", x = names(all_vals), value = TRUE)
+         #    print(all_vals[vals])
+         # })
          # we'll eventually use this object
          # to store selections in a database!
          shiny::onStop(function(){

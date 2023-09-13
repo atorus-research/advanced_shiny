@@ -8,10 +8,17 @@
 #' @export
 controlsUI <- function(id) {
   ns <- NS(id)
-  tags$div(
-     class="custom-flexbox",
-     selectInput(ns("trta"), "Treatments", NULL, multiple = TRUE),
-     selectInput(ns("param"), "Parameters", NULL, multiple = TRUE, width = '900px')
+  tagList(
+     tags$div(
+        class="custom-flexbox",
+        selectInput(ns("trta"), "Treatments", NULL, multiple = TRUE),
+        selectInput(ns("param"), "Parameters", NULL, multiple = TRUE, width = '900px')
+     ),
+     tags$div(
+        class="custom-flexbox",
+        shiny::code("mod-controls"),
+        shiny::verbatimTextOutput(ns("debug"))
+     )
   )
 }
 
@@ -43,6 +50,13 @@ controlsServer <- function(id, data) {
              selected = unique(data()$adlb$PARAM)
           )
        })
+       
+       # output$debug <- shiny::renderPrint({
+       #    all_vals <- shiny::reactiveValuesToList(x = input, all.names = TRUE)
+       #    vals <- grep(pattern = "trta|param", x = names(all_vals), value = TRUE)
+       #    print(all_vals[vals])
+       # })
+       
 
        return(
           list(

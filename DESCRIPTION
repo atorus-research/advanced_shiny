@@ -13,5 +13,6 @@ Imports:
     dplyr,
     ggplot2,
     haven,
+    reactable,
     shiny,
     Tplyr
