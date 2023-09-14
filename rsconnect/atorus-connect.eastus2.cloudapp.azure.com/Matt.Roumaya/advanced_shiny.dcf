@@ -1,0 +1,10 @@
+name: advanced_shiny
+title:
+username: Matt.Roumaya
+account: Matt.Roumaya
+server: atorus-connect.eastus2.cloudapp.azure.com
+hostUrl: https://atorus-connect.eastus2.cloudapp.azure.com/__api__
+appId: 323
+bundleId: 1203
+url: https://atorus-connect.eastus2.cloudapp.azure.com:443/content/1cdd5462-4873-4be9-a538-6ca987939eba/
+version: 1

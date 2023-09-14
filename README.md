@@ -69,7 +69,7 @@ git checkout Version06-cicd_for_testing
 Exercise 1 (5 mins):
 
 - Use the function `usethis::use_github_action()` to create a "check-release" YAML workflow file.
-- At some point in the YAML file, add a step that runs the R code: `print("This training session is so much fun!")`
+- At some point in the YAML file, add a step that runs the R code: `Sys.getenv()` to see what the GitHub Actions system environment looks like.
 
 
 ### Solutions
@@ -119,3 +119,20 @@ jobs:
         shell: Rscript {0}
 
 ```
+
+Notes:
+
+Conditional testing: 
+
+```
+if (Sys.getenv("GITHUB_ACTIONS") != "") {
+   source(testthat::test_path("testdata/data.R"))
+} else {
+   data <- read_data()$adlb
+}
+```
+- Unit testing probably shouldn't involve querying a production database.
+- Create a small subset of data to unit test with.
+
+
+

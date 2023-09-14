@@ -24,7 +24,7 @@ read_data <- function() {
    # - this is just an example of specifying options and using in a connection string
    options(
       mysql = list(
-         Driver = "/opt/rstudio-drivers/mysql/bin/lib/libmysqlodbc_sb64.so",
+         Driver = "mysql",
          Server = "bd-dev-db.mysql.database.azure.com",
          database = "bd",
          UID = "atorusadmin",

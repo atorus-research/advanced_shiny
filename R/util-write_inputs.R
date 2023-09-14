@@ -38,7 +38,7 @@ write_inputs <- function(lst) {
 # connect to database -----------------------------------------------------
    options(
       mysql = list(
-         Driver = "/opt/rstudio-drivers/mysql/bin/lib/libmysqlodbc_sb64.so",
+         Driver = "mysql",
          Server = "bd-dev-db.mysql.database.azure.com",
          database = "bd",
          UID = "atorusadmin",
