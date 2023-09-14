@@ -8,7 +8,10 @@
 #' @return a list of data.frames for use in the application
 #' @export
 #'
-#' @examples read_data()
+#' @examples 
+#' \dontrun{
+#' read_data()
+#' }
 read_data <- function() {
 
 

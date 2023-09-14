@@ -13,5 +13,7 @@ a list of data.frames for use in the application
 Function to read in data needed for application
 }
 \examples{
+\dontrun{
 read_data()
+}
 }
