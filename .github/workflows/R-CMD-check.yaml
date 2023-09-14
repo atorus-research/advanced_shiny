@@ -19,6 +19,7 @@ jobs:
           
       - name: install ODBC drivers
         run: apt-get install unixodbc unixodbc-dev --install-suggests
+        shell: sudo bash {0}
       
       - name: install MySQL driver
         run: apt-get install libmyodbc
