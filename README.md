@@ -135,4 +135,14 @@ if (Sys.getenv("GITHUB_ACTIONS") != "") {
 - Create a small subset of data to unit test with.
 
 
+# Version08-deploying_to_connect_git
+
+1. Create a manifest file and commit to the branch that should be tracked.
+2. Link Posit Connect to the Git repository.
+
+Notes:
+- Recommended as step 2! Manually deploy first and make sure everything is working, then take a shot at git-backed deployment.
+- Have a `dev` version that is run on CI/CD, and then merge into `prod` to deploy.
+  - Create a pull request that runs your CI/CD
+  - Once everything passes, you have a good amount of confidence that everything will work when deployed.
 
