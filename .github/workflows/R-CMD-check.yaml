@@ -19,6 +19,8 @@ jobs:
           
       - name: install ODBC drivers
         run: apt-get install unixodbc unixodbc-dev --install-suggests
+      
+      - name: install MySQL driver
         run: apt-get install libmyodbc
 
       - uses: r-lib/actions/setup-r-dependencies@v2
