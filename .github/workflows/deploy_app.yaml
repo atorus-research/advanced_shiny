@@ -35,5 +35,5 @@ jobs:
         with:
           url: ${{ secrets.CONNECT_SERVER }}
           api-key: ${{ secrets.CONNECT_API_KEY }}
-          access-type: all
+          access-type: acl
           show-logs: true
