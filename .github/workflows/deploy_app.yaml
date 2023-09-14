@@ -20,10 +20,12 @@ jobs:
           install.packages("devtools")
           devtools::install(dependencies = TRUE)
           devtools::test()
+
           
       - name: Create manifest.json
         shell: Rscript {0}
         run: |
+          install.packages("rsconnect")
           rsconnect::writeManifest()
           
       - name: Publish Connect content
