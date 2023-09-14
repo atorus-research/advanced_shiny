@@ -30,7 +30,7 @@ jobs:
           renv::snapshot()
           rsconnect::writeManifest()
           
-      - name: Publish Connect content
+      - name: publish connect
         uses: rstudio/actions/connect-publish@main
         with:
           url: ${{ secrets.CONNECT_SERVER }}
