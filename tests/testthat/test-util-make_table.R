@@ -1,4 +1,4 @@
-data <- read_data()$adlb
+source(testthat::test_path("testdata/data.R"))
 
 test_that("make_table generates no table without param data", {
    expect_null(make_table(data, unique(data$TRTA), NULL))

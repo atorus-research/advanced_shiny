@@ -1,4 +1,4 @@
-data <- read_data()$adlb
+source(testthat::test_path("testdata/data.R"))
 
 test_that("make_plot generates no plot without param data", {
    expect_null(make_plot(data, unique(data$TRTA), NULL))
