@@ -1395,35 +1395,6 @@
         "Built": "R 4.3.0; ; 2023-04-21 21:46:53 UTC; unix"
       }
     },
-    "here": {
-      "Source": "CRAN",
-      "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
-      "description": {
-        "Package": "here",
-        "Title": "A Simpler Way to Find Your Files",
-        "Version": "1.0.1",
-        "Date": "2020-12-13",
-        "Authors@R": "c(person(given = \"Kirill\",\nfamily = \"M\\u00fcller\",\nrole = c(\"aut\", \"cre\"),\nemail = \"krlmlr+r@mailbox.org\",\ncomment = c(ORCID = \"0000-0002-1416-3412\")),\nperson(given = \"Jennifer\",\nfamily = \"Bryan\",\nrole = \"ctb\",\nemail = \"jenny@rstudio.com\",\ncomment = c(ORCID = \"0000-0002-6983-2759\")))",
-        "Description": "Constructs paths to your project's files.\nDeclare the relative path of a file within your project with 'i_am()'.\nUse the 'here()' function as a drop-in replacement for 'file.path()',\nit will always locate the files relative to your project root.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://here.r-lib.org/, https://github.com/r-lib/here",
-        "BugReports": "https://github.com/r-lib/here/issues",
-        "Imports": "rprojroot (>= 2.0.2)",
-        "Suggests": "conflicted, covr, fs, knitr, palmerpenguins, plyr, readr,\nrlang, rmarkdown, testthat, uuid, withr",
-        "VignetteBuilder": "knitr",
-        "Encoding": "UTF-8",
-        "LazyData": "true",
-        "RoxygenNote": "7.1.1.9000",
-        "Config/testthat/edition": "3",
-        "NeedsCompilation": "no",
-        "Packaged": "2020-12-13 06:59:33 UTC; kirill",
-        "Author": "Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>),\nJennifer Bryan [ctb] (<https://orcid.org/0000-0002-6983-2759>)",
-        "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
-        "Repository": "RSPM",
-        "Date/Publication": "2020-12-13 07:30:02 UTC",
-        "Built": "R 4.3.0; ; 2023-04-21 23:11:59 UTC; unix"
-      }
-    },
     "highr": {
       "Source": "CRAN",
       "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
@@ -2165,34 +2136,6 @@
         "Built": "R 4.3.0; x86_64-pc-linux-gnu; 2023-08-02 15:40:14 UTC; unix"
       }
     },
-    "packrat": {
-      "Source": "CRAN",
-      "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
-      "description": {
-        "Type": "Package",
-        "Package": "packrat",
-        "Title": "A Dependency Management System for Projects and their R Package\nDependencies",
-        "Version": "0.9.1",
-        "Authors@R": "c(\nperson(\"Aron\", \"Atkins\", , \"aron@posit.co\", role = c(\"aut\", \"cre\")),\nperson(\"Toph\", \"Allen\", role = \"aut\"),\nperson(\"Kevin\", \"Ushey\", role = \"aut\"),\nperson(\"Jonathan\", \"McPherson\", role = \"aut\"),\nperson(\"Joe\", \"Cheng\", role = \"aut\"),\nperson(\"JJ\", \"Allaire\", role = \"aut\"),\nperson(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n)",
-        "Description": "Manage the R packages your project depends on in an isolated,\nportable, and reproducible way.",
-        "License": "GPL-2",
-        "URL": "https://github.com/rstudio/packrat/",
-        "BugReports": "https://github.com/rstudio/packrat/issues",
-        "Depends": "R (>= 3.0.0)",
-        "Imports": "tools, utils",
-        "Suggests": "devtools, httr, knitr, mockery, rmarkdown, testthat (>=\n3.0.0)",
-        "Config/testthat/edition": "3",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.1",
-        "NeedsCompilation": "no",
-        "Packaged": "2023-02-27 18:08:33 UTC; aron",
-        "Author": "Aron Atkins [aut, cre],\nToph Allen [aut],\nKevin Ushey [aut],\nJonathan McPherson [aut],\nJoe Cheng [aut],\nJJ Allaire [aut],\nPosit Software, PBC [cph, fnd]",
-        "Maintainer": "Aron Atkins <aron@posit.co>",
-        "Repository": "RSPM",
-        "Date/Publication": "2023-02-27 18:52:29 UTC",
-        "Built": "R 4.3.0; ; 2023-04-22 12:11:40 UTC; unix"
-      }
-    },
     "pillar": {
       "Source": "CRAN",
       "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
@@ -2779,37 +2722,6 @@
         "Built": "R 4.3.0; ; 2023-04-22 00:27:45 UTC; unix"
       }
     },
-    "renv": {
-      "Source": "CRAN",
-      "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
-      "description": {
-        "Package": "renv",
-        "Type": "Package",
-        "Title": "Project Environments",
-        "Version": "1.0.0",
-        "Authors@R": "c(\nperson(\"Kevin\", \"Ushey\", role = c(\"aut\", \"cre\"), email = \"kevin@rstudio.com\",\ncomment = c(ORCID = \"0000-0003-2880-7407\")),\nperson(\"Hadley\", \"Wickham\", role = c(\"aut\"), email = \"hadley@rstudio.com\",\ncomment = c(ORCID = \"0000-0003-4757-117X\")),\nperson(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n)",
-        "Description": "A dependency management toolkit for R. Using 'renv', you can create\nand manage project-local R libraries, save the state of these libraries to\na 'lockfile', and later restore your library as required. Together, these\ntools can help make your projects more isolated, portable, and reproducible.",
-        "License": "MIT + file LICENSE",
-        "URL": "https://rstudio.github.io/renv/, https://github.com/rstudio/renv",
-        "BugReports": "https://github.com/rstudio/renv/issues",
-        "Imports": "utils",
-        "Suggests": "BiocManager, cli, covr, cpp11, devtools, gitcreds, jsonlite,\nknitr, miniUI, packrat, pak, R6, remotes, reticulate,\nrmarkdown, rstudioapi, shiny, testthat, uuid, waldo, yaml,\nwebfakes",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.3",
-        "VignetteBuilder": "knitr",
-        "Config/Needs/website": "tidyverse/tidytemplate",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "true",
-        "Config/testthat/start-first": "bioconductor,python,install,restore,snapshot,retrieve,remotes",
-        "NeedsCompilation": "no",
-        "Packaged": "2023-07-07 21:11:12 UTC; kevin",
-        "Author": "Kevin Ushey [aut, cre] (<https://orcid.org/0000-0003-2880-7407>),\nHadley Wickham [aut] (<https://orcid.org/0000-0003-4757-117X>),\nPosit Software, PBC [cph, fnd]",
-        "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
-        "Repository": "RSPM",
-        "Date/Publication": "2023-07-07 21:50:02 UTC",
-        "Built": "R 4.3.0; ; 2023-07-10 11:39:27 UTC; unix"
-      }
-    },
     "rlang": {
       "Source": "CRAN",
       "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
@@ -2928,37 +2840,6 @@
         "Repository": "RSPM",
         "Date/Publication": "2022-04-02 16:40:02 UTC",
         "Built": "R 4.3.0; ; 2023-04-21 22:24:27 UTC; unix"
-      }
-    },
-    "rsconnect": {
-      "Source": "CRAN",
-      "Repository": "https://ar-rstudiodev.eastus2.cloudapp.azure.com:4242/cran-mirror/latest",
-      "description": {
-        "Type": "Package",
-        "Package": "rsconnect",
-        "Title": "Deploy Docs, Apps, and APIs to 'Posit Connect', 'shinyapps.io',\nand 'RPubs'",
-        "Version": "1.0.1",
-        "Authors@R": "c(\nperson(\"Aron\", \"Atkins\", , \"aron@posit.co\", role = c(\"aut\", \"cre\")),\nperson(\"Toph\", \"Allen\", role = \"aut\"),\nperson(\"Hadley\", \"Wickham\", role = \"aut\"),\nperson(\"Jonathan\", \"McPherson\", role = \"aut\"),\nperson(\"JJ\", \"Allaire\", role = \"aut\"),\nperson(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\"))\n)",
-        "Description": "Programmatic deployment interface for 'RPubs',\n'shinyapps.io', and 'Posit Connect'. Supported content types include R\nMarkdown documents, Shiny applications, Plumber APIs, plots, and\nstatic web content.",
-        "License": "GPL-2",
-        "URL": "https://github.com/rstudio/rsconnect",
-        "BugReports": "https://github.com/rstudio/rsconnect/issues",
-        "Depends": "R (>= 3.5.0)",
-        "Imports": "cli, curl, digest, jsonlite, lifecycle, openssl (>= 2.0.0),\npackrat (>= 0.6), renv (>= 1.0.0), rlang (>= 1.0.0), rstudioapi\n(>= 0.5), tools, yaml (>= 2.1.5)",
-        "Suggests": "Biobase, BiocManager, foreign, knitr, MASS, plumber (>=\n0.3.2), quarto, RCurl, reticulate, rmarkdown (>= 1.1), shiny,\ntestthat (>= 3.1.9), webfakes, withr",
-        "VignetteBuilder": "knitr",
-        "Config/Needs/website": "tidyverse/tidytemplate",
-        "Config/testthat/edition": "3",
-        "Config/testthat/parallel": "true",
-        "Encoding": "UTF-8",
-        "RoxygenNote": "7.2.3",
-        "NeedsCompilation": "no",
-        "Packaged": "2023-07-20 17:09:26 UTC; aron",
-        "Author": "Aron Atkins [aut, cre],\nToph Allen [aut],\nHadley Wickham [aut],\nJonathan McPherson [aut],\nJJ Allaire [aut],\nPosit Software, PBC [cph, fnd]",
-        "Maintainer": "Aron Atkins <aron@posit.co>",
-        "Repository": "RSPM",
-        "Date/Publication": "2023-07-20 19:00:02 UTC",
-        "Built": "R 4.3.0; ; 2023-07-21 11:13:39 UTC; unix"
       }
     },
     "rstudioapi": {
@@ -3840,9 +3721,6 @@
     "DESCRIPTION": {
       "checksum": "81fe05ee8718b2291aebf4da4dcc588f"
     },
-    "inst/deploy.R": {
-      "checksum": "aaff56b8d183ae4f5473ac93b3b61ac5"
-    },
     "inst/proviz.R": {
       "checksum": "09e323afa239face4644305ca8be3ddb"
     },
@@ -3850,7 +3728,7 @@
       "checksum": "24b9b8698c808b92b33a4838de8c3269"
     },
     "inst/www/logo-shiny.png": {
-      "checksum": "3e8d53efee3d804fff9f3cac5c2001b9"
+      "checksum": "81a5ffa65b9136da37afc9d1e9b1eb02"
     },
     "inst/www/styles.css": {
       "checksum": "8f615fb46f274ae6cdd7c946c84e4a2b"
@@ -3916,7 +3794,7 @@
       "checksum": "05217b0192b9b7351639d5cfce752c26"
     },
     "README.md": {
-      "checksum": "b8d4f91c7e9692631278ae936264a14d"
+      "checksum": "2d805e15b4dc32895f9d49c4b2253928"
     },
     "tests/testthat.R": {
       "checksum": "ab2921b8f9ef2bfb1a0e2a48759514b1"
