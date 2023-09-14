@@ -1,4 +1,9 @@
-source(testthat::test_path("testdata/data.R"))
+if (Sys.getenv("GITHUB_ACTIONS") != "") {
+   source(testthat::test_path("testdata/data.R"))
+} else {
+   data <- read_data()$adlb
+}
+
 
 test_that("make_plot generates no plot without param data", {
    expect_null(make_plot(data, unique(data$TRTA), NULL))

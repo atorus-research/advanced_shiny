@@ -1,4 +1,9 @@
-source(testthat::test_path("testdata/data.R"))
+if (Sys.getenv("GITHUB_ACTIONS") != "") {
+   source(testthat::test_path("testdata/data.R"))
+} else {
+   data <- read_data()$adlb
+}
+
 
 test_that("make_table generates no table without param data", {
    expect_null(make_table(data, unique(data$TRTA), NULL))
