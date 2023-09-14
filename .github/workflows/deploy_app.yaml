@@ -1,9 +1,5 @@
 name: deploy_app
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
  
 jobs:
   test-and-connect-publish:
@@ -15,15 +11,15 @@ jobs:
 
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: 4.2.3
+          r-version: 4.3.0
           use-public-rspm: true
 
       - uses: r-lib/actions/setup-renv@v2
           
-      - name: Test Shiny App
+      - name: Run tests
         shell: Rscript {0}
         run: |
-          shinytest2::test_app()
+          devtools::test()
           
       - name: Create manifest.json
         shell: Rscript {0}
@@ -37,4 +33,4 @@ jobs:
           api-key: ${{ secrets.CONNECT_API_KEY }}
           access-type: logged_in
           dir: |
-            .:/shiny-app-demo-cicd-github-actions
+            .:/bdasap_ci_deployment_demo
