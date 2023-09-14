@@ -23,6 +23,7 @@ jobs:
       
       - name: install MySQL driver
         run: apt-get install libmyodbc
+        shell: sudo bash {0}
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
