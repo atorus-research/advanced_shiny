@@ -23,7 +23,6 @@ jobs:
           devtools::install(dependencies = TRUE)
           devtools::test()
 
-          
       - name: Create manifest.json
         shell: Rscript {0}
         run: |
