@@ -33,7 +33,7 @@ read_data <- function() {
    
 # create connection to DB -------------------------------------------------
    con <- DBI::dbConnect(odbc::odbc(),
-                         Driver = options()$mysql$Driver,
+                         Driver = "mysql",
                          Server = options()$mysql$Server,
                          database = options()$mysql$database,
                          UID = options()$mysql$UID,
