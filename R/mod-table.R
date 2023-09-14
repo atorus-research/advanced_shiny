@@ -3,6 +3,9 @@
 #' @param id namespace of the table modules
 #'
 #' @return table UI
+#' 
+#' @importFrom reactable reactableOutput
+#' 
 #' @export
 tableUI <- function(id) {
    ns <- NS(id)
@@ -22,6 +25,8 @@ tableUI <- function(id) {
 #'
 #' @param id matching namespace of UI function
 #' @param data data to display in the table, passed to make_table
+#' 
+#' @importFrom reactable reactable
 #'
 #' @export
 tableServer <- function(id, data) {

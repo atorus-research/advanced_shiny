@@ -1,22 +1,27 @@
 data <- read_data()$adlb
 
 test_that("make_table generates no table without param data", {
-   # CODE HERE
+   expect_null(make_table(data, unique(data$TRTA), NULL))
 })
 
 test_that("make_table generates no table without trta data", {
-   # CODE HERE
+   expect_null(make_table(data, NULL, unique(data$PARAM)))
 })
 
-test_that("make_table generates a plotly object", {
-   # CODE HERE
+test_that("make_table generates a data.frame", {
+   table <- make_table(data, unique(data$TRTA), unique(data$PARAM))
+   expect_true("data.frame" %in% class(table))
 })
 
 test_that("make_table generates a data.frame with 5 columns", {
-   # CODE HERE
+   table <- make_table(data, unique(data$TRTA), unique(data$PARAM))
+   expect_equal(length(colnames(table)), 5)
 })
 
+
 test_that("make_table generates a data.frame with 216 rows", {
-   # CODE HERE
+   table <- make_table(data, unique(data$TRTA), unique(data$PARAM))
+   expect_equal(nrow(table), 216)
 })
+
 

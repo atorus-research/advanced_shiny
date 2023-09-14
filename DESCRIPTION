@@ -13,13 +13,13 @@ Imports:
     DBI,
     dplyr,
     ggplot2,
-    haven,
     logger,
     odbc,
     plotly,
     purrr,
+    reactable,
+    sass,
     shiny,
-    shinytest2,
     Tplyr
 Suggests: 
     testthat (>= 3.0.0)

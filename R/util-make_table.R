@@ -16,7 +16,7 @@ make_table <- function(data, trta, param) {
          dplyr::filter(TRTA %in% trta) |>
          dplyr::filter(PARAM %in% param)
       
-      tplyr_table(data, TRTA) |>
+      Tplyr::tplyr_table(data, TRTA) |>
          Tplyr::add_layer(
             Tplyr::group_count(AVISIT, PARAM)
          ) |>
@@ -28,7 +28,7 @@ make_table <- function(data, trta, param) {
          ) |>
          dplyr::rename_at(
             dplyr::vars(
-               tidyselect::starts_with('var1_')), list(~sub('var1_', '', .)))
+               dplyr::starts_with('var1_')), list(~sub('var1_', '', .)))
    }
    
 }

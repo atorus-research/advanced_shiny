@@ -51,3 +51,71 @@ Dependencies:
   * util-write_inputs.R
 * README.md
 * www
+
+---
+
+# CI/CD For Testing
+
+### Setup
+
+Check out branch: `Version06-cicd_for_testing`
+
+```
+git checkout Version06-cicd_for_testing
+```
+
+### Exercises
+
+Exercise 1 (5 mins):
+
+- Use the function `usethis::use_github_action()` to create a "check-release" YAML workflow file.
+- At some point in the YAML file, add a step that runs the R code: `print("This training session is so much fun!")`
+
+
+### Solutions
+
+1.) 
+```
+usethis::use_github_action("check-release")
+```
+
+2.)
+
+Modify YAML file (after the `r-lib/actions/setup-r@v2` line) to add:
+
+```
+
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+name: R-CMD-check
+
+jobs:
+  R-CMD-check:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: any::rcmdcheck
+          needs: check
+
+      - uses: r-lib/actions/check-r-package@v2
+
+      - name: any name you would like
+        run: print("This training session is so much fun!")
+        shell: Rscript {0}
+
+```
