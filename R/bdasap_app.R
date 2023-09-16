@@ -37,12 +37,17 @@ bdasap_app <- function(runApp = TRUE){
       server = function(input, output, session){
          
          data <- shiny::reactive(read_data())
+         
+         # swap when developing
+         # data <- shiny::reactive(
+         #    list(adlb = arrow::read_feather(system.file("data", "adlb.arrow", package = "bdasap")))
+         #    )
+         
          logger::log_info("data object created")
          
          # reactiveValues
          # all_inputs <- shiny::reactiveValues(trta = NULL, param = NULL, session = session)
          vals <- reactive(reactiveValuesToList(x = input, all.names = TRUE))
-         
          ############### TABLE ##########################
          
          # reactives get passed to modules as functions!
