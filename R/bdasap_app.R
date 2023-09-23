@@ -15,7 +15,7 @@ bdasap_app <- function(runApp = TRUE){
          bslib::page_navbar(
             title = shiny::tags$div(
                shiny::img(
-                  src = "www/logo-shiny.png",
+                  src = "www/new-logo-shiny.png",
                   height = 50,
                   width = 45,
                   style = "margin:10px 10px"
