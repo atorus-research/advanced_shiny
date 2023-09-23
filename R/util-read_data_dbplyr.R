@@ -4,6 +4,7 @@
 #' 
 #' @importFrom DBI dbConnect dbDisconnect dbGetQuery 
 #' @importFrom odbc odbc
+#' @import dbplyr
 #'
 #' @return a list of data.frames for use in the application
 #' @export
@@ -43,9 +44,9 @@ read_data_dbplyr <- function() {
    
    # create query ------------------------------------------------------------
    
-   adlb <- tbl(con, "phuse_original_adlb") %>% 
-      select("TRTA", "PARAM", "AVAL", "AVISIT", "AVISITN") %>% 
-      collect()
+   adlb <- dplyr::tbl(con, "phuse_original_adlb") %>% 
+      dplyr::select("TRTA", "PARAM", "AVAL", "AVISIT", "AVISITN") %>% 
+      dplyr::collect()
    
    
    # disconnect from DB ------------------------------------------------------
