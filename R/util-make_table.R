@@ -16,7 +16,7 @@ make_table <- function(data, trta, param) {
          dplyr::filter(TRTA %in% trta) |>
          dplyr::filter(PARAM %in% param)
       
-      tplyr_table(data, TRTA) |>
+      Tplyr::tplyr_table(data, TRTA) |>
          Tplyr::add_layer(
             Tplyr::group_count(AVISIT, PARAM)
          ) |>
