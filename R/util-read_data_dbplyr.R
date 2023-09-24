@@ -54,6 +54,6 @@ read_data_dbplyr <- function() {
    
    
    # return data -------------------------------------------------------------
-   return(adlb)
+   return(list(adlb = adlb))
    
 }
