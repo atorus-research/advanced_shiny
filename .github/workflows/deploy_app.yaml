@@ -20,8 +20,8 @@ jobs:
         shell: Rscript {0}
         run: |
           install.packages("devtools")
-          devtools::install(dependencies = TRUE)
-          .rs.restartR()
+          install.packages("pkgbuild")
+          devtools::install(upgrade_dependencies = TRUE)
           devtools::test()
 
       - name: Create manifest.json
