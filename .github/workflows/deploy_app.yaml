@@ -21,6 +21,7 @@ jobs:
         run: |
           install.packages("devtools")
           install.packages("pkgbuild")
+          remotes::install_version("processx", "3.8.2")
           devtools::install(upgrade_dependencies = TRUE)
           devtools::test()
 
