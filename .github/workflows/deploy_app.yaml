@@ -21,6 +21,7 @@ jobs:
         run: |
           install.packages("devtools")
           devtools::install(dependencies = TRUE)
+          .rs.restartR()
           devtools::test()
 
       - name: Create manifest.json
